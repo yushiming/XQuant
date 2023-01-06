@@ -33,7 +33,41 @@
 
 * imgui: 界面库。
 
-  地址: https://github.com/ocornut/imgui
+  地址: https://github.com/ocornut/imgui     
+
+  docking分支：主要引入16个文件
+
+  imconfig.h    
+
+  imgui.h    
+
+  imgui_impl_glfw.h     
+
+  imgui_impl_opengl3.h   
+
+  imstb_textedit.h    
+
+  imstb_textedit.h
+
+  imgui_impl_opengl3_loader.h     
+
+  imgui_internal.h   
+
+  imstb_rectpack.h   
+
+  imgui.cpp   
+
+  imgui_demo.cpp
+
+  imgui_draw.cpp  
+
+  imgui_impl_glfw.cpp   
+
+  imgui_impl_opengl3.cpp   
+
+  imgui_tables.cpp   
+
+  imgui_widgets.cpp
 
 * imgui节点: 节点编辑器库。
 
@@ -41,14 +75,14 @@
 
 * ctp: 用于期货行情及交易的接口。
 
-​          地址: http://www.sfit.com.cn/
+​          地址: http://www.sfit.com.cn/5_2_DocumentDown_2.htm
 
 
 
 ## 开发工作:	
 
-- [ ] 添加json解析库
-- [ ] 添加imgui库
+- [x] 添加json解析库
+- [x] 添加imgui库
 - [ ] 添加ctp库
 - [ ] 读账号配置信息
 - [ ] 
