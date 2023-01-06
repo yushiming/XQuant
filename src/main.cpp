@@ -7,9 +7,9 @@
 //#include <GL/glut.h>//如果上面想用glew32s.lib静态库而不是用动态库，就得加上glut.h，原因不明，明白的可以评论到下面，谢谢
 
 
-#include "imgui/imgui.h"
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
 
 
 #pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )

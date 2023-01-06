@@ -13,7 +13,7 @@
   #pragma warning (disable: 4514 4786 4503 C4996)
 #endif
 
-#include "./ThostTraderApi/ThostFtdcUserApiStruct.h"
+#include "ThostFtdcUserApiStruct.h"
 //#include "InstrumentMarketData.h"
 
 #include <map>

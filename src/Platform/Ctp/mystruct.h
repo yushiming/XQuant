@@ -1,8 +1,8 @@
 #pragma once
 #include<string>
 #include<vector>
-#include"ThostTraderApi/ThostFtdcUserApiDataType.h"
-#include"ThostTraderApi/ThostFtdcUserApiStruct.h"
+#include"ThostFtdcUserApiDataType.h"
+#include"ThostFtdcUserApiStruct.h"
 //仓位信息结构体
 struct position_field
 {

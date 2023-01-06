@@ -1,7 +1,6 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include<string>
-#include"main.h"
 #include "ThostFtdcMdApi.h"
 #include<map>
 #include<vector>
