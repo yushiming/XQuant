@@ -39,6 +39,10 @@ MESSAGE(STATUS "CMAKE_CURRENT_SOURCE_DIR" = ${CMAKE_CURRENT_SOURCE_DIR})
 # 找到三方静态库
 #find_library(jsoncpp_lib NAMES jsoncpp PATHS ./jsoncpp)
 
+#FILE 全局搜索文件存入变量中
+#FILE(GLOB LOGWIN "log/logan-win/*.h" "log/logan-win/*.cpp")
+#source_group 用于整理工程中的文件，将头文件源文件那目录结构进行分组
+#source_group(log/logan-win FILES ${LOGWIN})
 
 #-------- 设置变量值
 #设置glew动态库的库文件路径

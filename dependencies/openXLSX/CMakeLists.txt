@@ -32,18 +32,18 @@ include_directories(
   ../pugixml/
 )
 
+# 生成静态库文件 通过指定源文件来生成库文件
 add_library(openXLSX STATIC
   ${OPENXLSX_SRC}
 )
 
-MESSAGE(STATUS "${CMAKE_CURRENT_SOURCE_DIR}/lib" = ${CMAKE_CURRENT_SOURCE_DIR}/lib)
-
+# 设置库文件属性
 set_target_properties(openXLSX
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib"
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib"
 )
 
-#设置该库依赖pugixml库
+# 设置该库依赖pugixml库
 target_link_libraries(openXLSX pugixml) 
 

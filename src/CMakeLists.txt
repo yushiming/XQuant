@@ -17,8 +17,6 @@ set(CORE_FILE
 	./src/Core/Window.cpp
 )
 
-
-
 set(DATA_FILE 
 	./src/Data/ProjectData.cpp
 	./src/Data/ProjectData.h
