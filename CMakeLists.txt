@@ -57,6 +57,7 @@ add_subdirectory(dependencies)
 
 #设置项目的头文件包含目录
 include_directories(
+	dependencies/spdlog-1.x/include
 	dependencies/rapidjson-master/include
 	dependencies/glew-2.2.0/include
 	dependencies/glfw-3.3.8.WIN64/include
