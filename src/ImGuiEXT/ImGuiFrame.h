@@ -1,9 +1,9 @@
 //  Copyright [2023] <xiaxianyue>
 //=====================================================================================
 //
-//      Filename:  ImGuiLayer.h
+//      Filename:  ImGuiFrame.h
 //
-//   Description:  ImGui封装层,
+//   Description:  ImGui封装界面,
 //
 //       Version:  1.0
 //       Created:  2023年1月3日 19时32分45秒
@@ -17,16 +17,18 @@
 
 #pragma once
 
+#include <string>
+
 #include "Core/Layer.h"
 #include "Events/Event.h"
 
 namespace XQuant {
 
-	class ImGuiLayer : public Layer
+	class ImGuiFrame : public Layer
 	{
 	public:
-		ImGuiLayer();
-		~ImGuiLayer() = default;
+		ImGuiFrame(std::string name);
+		~ImGuiFrame() = default;
 
 		virtual void onAttach() override;
 		virtual void onDetach() override;

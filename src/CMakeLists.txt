@@ -43,14 +43,43 @@ set(EVENTS_FILE
 	./src/Events/MouseEvent.h
 )
 
-set(FRAMES_FILE 
-#	./src/Frames/
-#	./src/Frames/
+set(FRAMES_FILE
+	./src/Frames/FAccountLogin.h
+	./src/Frames/FAccountLogin.cpp
+	./src/Frames/FSecurityList.h
+	./src/Frames/FSecurityList.cpp
+	./src/Frames/FTrendChart.h
+	./src/Frames/FTrendChart.cpp
+	./src/Frames/FBacktestRun.h
+	./src/Frames/FBacktestRun.cpp
+	./src/Frames/FStrategyBlueprintRun.h
+	./src/Frames/FStrategyBlueprintRun.cpp	
+	
+	./src/Frames/FBacktestRecord.h
+	./src/Frames/FBacktestRecord.cpp
+	./src/Frames/FPositionDetails.h
+	./src/Frames/FPositionDetails.cpp
+	
+	./src/Frames/FLogOutput.h
+	./src/Frames/FLogOutput.cpp
+
+	./src/Frames/FStrategyBlueprintEdit.h
+	./src/Frames/FStrategyBlueprintEdit.cpp
+
+	./src/Frames/FTradeRecord.h
+	./src/Frames/FTradeRecord.cpp
+
+	./src/Frames/FAbout.h
+	./src/Frames/FAbout.cpp
+	./src/Frames/FHelp.h
+	./src/Frames/FHelp.cpp
+	./src/Frames/FSetting.h
+	./src/Frames/FSetting.cpp
 )
 
 set(IMGUIEXT_FILE 
-	./src/ImGuiEXT/ImGuiLayer.h
-	./src/ImGuiEXT/ImGuiLayer.cpp
+	./src/ImGuiEXT/ImGuiFrame.h
+	./src/ImGuiEXT/ImGuiFrame.cpp
 )
 
 set(IMGUIEXT_IMPLOT_FILE 

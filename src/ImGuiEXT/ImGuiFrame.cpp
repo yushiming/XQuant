@@ -3,19 +3,19 @@
 #include <imgui_impl_opengl3.h>
 #include <GLFW/glfw3.h>
 
-#include "ImGuiEXT/ImGuiLayer.h"
+#include "ImGuiEXT/ImGuiFrame.h"
 #include "Core/Application.h"
 #include "Events/Event.h"
 
 
 namespace XQuant {
 
-	ImGuiLayer::ImGuiLayer()
-		: Layer("ImGuiLayer")
+	ImGuiFrame::ImGuiFrame(std::string name)
+		: Layer(name)
 	{
 	}
 
-	void ImGuiLayer::onAttach()
+	void ImGuiFrame::onAttach()
 	{
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
@@ -53,14 +53,14 @@ namespace XQuant {
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
 
-	void ImGuiLayer::onDetach()
+	void ImGuiFrame::onDetach()
 	{
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::onEvent(Event& e)
+	void ImGuiFrame::onEvent(Event& e)
 	{
 		if (_blockEvents)
 		{
@@ -70,14 +70,14 @@ namespace XQuant {
 		}
 	}
 
-	void ImGuiLayer::begin()
+	void ImGuiFrame::begin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 	}
 
-	void ImGuiLayer::end()
+	void ImGuiFrame::end()
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::instance();
@@ -96,7 +96,7 @@ namespace XQuant {
 		}
 	}
 
-	void ImGuiLayer::setDarkThemeColors()
+	void ImGuiFrame::setDarkThemeColors()
 	{
 		auto& colors = ImGui::GetStyle().Colors;
 		colors[ImGuiCol_WindowBg] = ImVec4{ 0.1f, 0.105f, 0.11f, 1.0f };

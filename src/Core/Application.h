@@ -26,7 +26,7 @@
 
 #include "Core/Timestep.h"
 
-#include "ImGuiEXT/ImGuiLayer.h"
+#include "ImGuiEXT/ImGuiFrame.h"
 
 namespace XQuant {
 
@@ -47,7 +47,7 @@ namespace XQuant {
 
 		void close();
 
-		ImGuiLayer* getImGuiLayer() { return _imGuiLayer; }
+		ImGuiFrame* getImGuiLayer() { return _imGuiLayer; }
 
 		void run();
 	private:
@@ -55,7 +55,7 @@ namespace XQuant {
 		bool onWindowResize(WindowResizeEvent& e);
 	private:
 		Scope<Window> _window;
-		ImGuiLayer* _imGuiLayer;
+		ImGuiFrame* _imGuiLayer;
 		bool _running = true;
 		bool _minimized = false;
 		LayerStack _layerStack;

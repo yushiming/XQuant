@@ -16,7 +16,7 @@ namespace XQuant {
 		_window = Window::create(WindowProps(name));
 		_window->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 
-		_imGuiLayer = new ImGuiLayer();
+		_imGuiLayer = new ImGuiFrame("test");
 		pushOverlay(_imGuiLayer);
 	}
 
@@ -104,7 +104,7 @@ namespace XQuant {
 	XQuant::Application* XQuant::CreateApplication()
 	{
 		auto app = new Application();
-		app->pushLayer(new ImGuiLayer());  // TODO 创建多个窗体实例 并加入
+		app->pushLayer(new ImGuiFrame("test"));  // TODO 创建多个窗体实例 并加入
 
 		return app;
 	}
