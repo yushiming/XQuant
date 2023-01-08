@@ -4,7 +4,14 @@ set(SRC_FILE
 	./src/main.cpp
 )
 
-set(CORE_FILE 
+set(CORE_FILE
+	./src/Core/KeyCodes.h
+	./src/Core/MouseCodes.h
+	./src/Core/Input.h
+	./src/Core/Input.cpp
+	./src/Core/Base.h
+	./src/Core/Assert.h
+	./src/Core/TimeStep.h
 	./src/Core/Application.cpp
 	./src/Core/Application.h
 	./src/Core/Common.cpp
@@ -13,8 +20,10 @@ set(CORE_FILE
 	./src/Core/Layer.h
 	./src/Core/Log.cpp
 	./src/Core/Log.h
+	./src/Core/Window.h
 	./src/Core/Window.cpp
-	./src/Core/Window.cpp
+	./src/Core/LayerStack.h
+	./src/Core/LayerStack.cpp
 )
 
 set(DATA_FILE 
@@ -30,11 +39,18 @@ set(DEBUG_FILE
 set(EVENTS_FILE 
 	./src/Events/ApplicationEvent.h
 	./src/Events/Event.h
+	./src/Events/KeyEvent.h
+	./src/Events/MouseEvent.h
 )
 
 set(FRAMES_FILE 
 #	./src/Frames/
 #	./src/Frames/
+)
+
+set(IMGUIEXT_FILE 
+	./src/ImGuiEXT/ImGuiLayer.h
+	./src/ImGuiEXT/ImGuiLayer.cpp
 )
 
 set(IMGUIEXT_IMPLOT_FILE 
@@ -61,10 +77,19 @@ set(NET_FILE
 )
 
 set(PLATFORM_CTP_FILE 
-#	./src/Platform/Ctp/MdSpi.h
-#	./src/Platform/Ctp/TdSpi.h
-#	./src/Platform/Ctp/MdSpi.cpp
-#	./src/Platform/Ctp/TdSpi.cpp
+	./src/Platform/Ctp/App.cpp
+	./src/Platform/Ctp/MdSpi.h
+	./src/Platform/Ctp/MdSpi.cpp	
+	./src/Platform/Ctp/TdSpi.h
+	./src/Platform/Ctp/TdSpi.cpp
+
+	./src/Platform/Ctp/KData.h	
+	./src/Platform/Ctp/KData.cpp
+	./src/Platform/Ctp/mystruct.h
+	./src/Platform/Ctp/mystruct.cpp
+	./src/Platform/Ctp/timer.h
+	./src/Platform/Ctp/Strategy.h
+	./src/Platform/Ctp/Strategy.cpp
 )
 
 set(PLATFORM_XTP_FILE 
@@ -83,7 +108,9 @@ set(UTILS_FILE
 	./src/Utils/RapidJsonHelper.h
 	./src/Utils/RapidJsonHelper.cpp
 	./src/Utils/StringHelper.h
-	./src/Utils/StringHelper.cpp	
+	./src/Utils/StringHelper.cpp
+	./src/Utils/FileDialogs.h
+	./src/Utils/FileDialogs.cpp		
 )
 
 # 对ImGui的源码分组到ImGui组里
@@ -93,6 +120,7 @@ source_group(src/Data FILES ${DATA_FILE})
 source_group(src/Debug FILES ${DEBUG_FILE})
 source_group(src/Events FILES ${EVENTS_FILE})
 source_group(src/Frames FILES ${FRAMES_FILE})
+source_group(src/ImGuiEXT FILES ${IMGUIEXT_FILE})
 source_group(src/ImGuiEXT/Implot FILES ${IMGUIEXT_IMPLOT_FILE})
 source_group(src/IO FILES ${IO_FILE})
 source_group(src/Language FILES ${LANGUAGE_FILE})

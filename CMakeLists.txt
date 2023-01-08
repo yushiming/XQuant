@@ -67,6 +67,8 @@ include_directories(
 	dependencies/glfw-3.3.8.WIN64/include
 	dependencies/ctp-6.6.9/include
 	dependencies/imgui
+	dependencies/glm
+	src
 )
 
 # include 指令用来载入并运行来自于文件或模块的 CMake 代码
@@ -80,6 +82,7 @@ add_executable(${PROJECT_NAME}
 	${DEBUG_FILE}
 	${EVENTS_FILE}
 	${FRAMES_FILE}
+	${IMGUIEXT_FILE}
 	${IMGUIEXT_IMPLOT_FILE}
 	${IO_FILE}
 	${LANGUAGE_FILE}

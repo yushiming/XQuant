@@ -25,6 +25,12 @@
 
 ## 第三方库
 
+
+
+* glm 数学库
+
+  地址: https://github.com/g-truc/glm
+
 * rapidjson: json解析库。             
 
   地址: https://github.com/Tencent/rapidjson

@@ -1,3 +1,23 @@
+#pragma once
+#include "Core/Base.h"
+#include "Core/Log.h"
+#include "Core/Application.h"
+
+extern XQuant::Application* XQuant::CreateApplication();
+
+int main(int argc, char** argv)
+{
+    XQuant::Log::init();
+
+	auto app = XQuant::CreateApplication();
+	app->run();
+	delete app;
+}
+
+
+
+
+/* 
 
 #define GLEW_STATIC
 
@@ -139,7 +159,7 @@ int main() {
 
 
 
-
+*/
 
 
 
