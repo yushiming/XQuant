@@ -17,29 +17,32 @@
 
 #pragma once
 
+#include <imgui.h>
 #include <string>
 
-#include "Core/Layer.h"
+#include "Core/TimeStep.h"
 #include "Events/Event.h"
 
 namespace XQuant {
 
-	class ImGuiFrame : public Layer
+	class ImGuiFrame
 	{
 	public:
 		ImGuiFrame(std::string name);
-		~ImGuiFrame() = default;
+		virtual ~ImGuiFrame();
 
-		virtual void onAttach() override;
-		virtual void onDetach() override;
-		virtual void onEvent(Event& e) override;
-
-		void begin();
-		void end();
+		virtual void onAttach();
+		virtual void onDetach();
+		virtual void onUpdate(TimeStep ts) { }
+		virtual void onImGuiRender() { }
+		virtual void onEvent(Event& e);
 
 		void blockEvents(bool block) { _blockEvents = block; }
 
-		void setDarkThemeColors();
+		const std::string& getName()const { return _debugName; }
+
+	protected:
+		std::string _debugName;
 	private:
 		bool _blockEvents = true;
 		float _time = 0.0f;

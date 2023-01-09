@@ -5,61 +5,69 @@
 #include "Core/Input.h"
 #include "Core/Assert.h"
 
+#include "Frames/FTest.h"
+
 namespace XQuant {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const std::string& name)
-	{
+	Application::Application(const std::string& name) {
 		XQ_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
-		_window = Window::create(WindowProps(name));
+	}
+
+	Application::~Application() {
+
+	}
+
+	void Application::onInit() {
+		// 创建窗口
+		_window = Window::create(WindowProps());
+		_window->onInit();
 		_window->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 
-		_imGuiLayer = new ImGuiFrame("test");
-		pushOverlay(_imGuiLayer);
+		// 创建imgui层
+		_imGuiLayer = new ImGuiLayer();
+		_imGuiLayer->onInit();
+
+		// TODO 创建多个窗体实例(imgui frame) 并加入_frameStack
+		auto ftest = new FTest("FTest");
+		pushLayer(ftest);
+
+
 	}
 
-	Application::~Application()
-	{
-
+	void Application::pushLayer(ImGuiFrame* frame) {
+		_frameStack.pushLayer(frame);
+		frame->onAttach();
 	}
 
-	void Application::pushLayer(Layer* layer)
-	{
-		_layerStack.pushLayer(layer);
-		layer->onAttach();
+	void Application::pushOverlay(ImGuiFrame* frame) {
+		_frameStack.pushOverlay(frame);
+		frame->onAttach();
 	}
 
-	void Application::pushOverlay(Layer* layer)
-	{
-		_layerStack.pushOverlay(layer);
-		layer->onAttach();
-	}
-
-	void Application::close()
-	{
+	void Application::close() {
 		_running = false;
 	}
 
-	void Application::onEvent(Event& e)
-	{
+	void Application::onEvent(Event& e) {
 		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<WindowCloseEvent>(XQ_BIND_EVENT_FN(Application::onWindowClose));
 		dispatcher.dispatch<WindowResizeEvent>(XQ_BIND_EVENT_FN(Application::onWindowResize));
 
-		for (auto it = _layerStack.rbegin(); it != _layerStack.rend(); ++it)
-		{
+		_imGuiLayer->onEvent(e);
+
+		for (auto it = _frameStack.rbegin(); it != _frameStack.rend(); ++it) {
 			if (e.handled)
 				break;
 			(*it)->onEvent(e);
 		}
 	}
 
-	void Application::run()
-	{
-		while (_running)
-		{
+	void Application::run() {
+
+		while (_running) {
 			float time = (float)glfwGetTime();
 			TimeStep timestep = time - _lastFrameTime;
 			_lastFrameTime = time;
@@ -67,14 +75,14 @@ namespace XQuant {
 			if (!_minimized)
 			{
 				{
-					for (Layer* layer : _layerStack)
-						layer->onUpdate(timestep);
+					for (ImGuiFrame* frame : _frameStack)
+						frame->onUpdate(timestep);
 				}
 
 				_imGuiLayer->begin();
 				{
-					for (Layer* layer : _layerStack)
-						layer->onImGuiRender();
+					for (ImGuiFrame* frame : _frameStack)
+						frame->onImGuiRender();
 				}
 				_imGuiLayer->end();
 			}
@@ -83,16 +91,13 @@ namespace XQuant {
 		}
 	}
 
-	bool Application::onWindowClose(WindowCloseEvent& e)
-	{
+	bool Application::onWindowClose(WindowCloseEvent& e) {
 		_running = false;
 		return true;
 	}
 
-	bool Application::onWindowResize(WindowResizeEvent& e)
-	{
-		if (e.getWidth() == 0 || e.getHeight() == 0)
-		{
+	bool Application::onWindowResize(WindowResizeEvent& e) {
+		if (e.getWidth() == 0 || e.getHeight() == 0) {
 			_minimized = true;
 			return false;
 		}
@@ -101,11 +106,9 @@ namespace XQuant {
 		return false;
 	}
 
-	XQuant::Application* XQuant::CreateApplication()
-	{
+	XQuant::Application* XQuant::CreateApplication() {
 		auto app = new Application();
-		app->pushLayer(new ImGuiFrame("test"));  // TODO 创建多个窗体实例 并加入
-
+		app->onInit();
 		return app;
 	}
 

@@ -20,19 +20,18 @@ namespace XQuant {
 	}
 
 	Window::Window(const WindowProps& props) {
-		init(props);
+		_data.title = props.title;
+		_data.width = props.width;
+		_data.height = props.height;
 	}
 
 	Window::~Window() {
 		shutdown();
 	}
 
-	void Window::init(const WindowProps& props) {
-		_data.title = props.title;
-		_data.width = props.width;
-		_data.height = props.height;
+	void Window::onInit() {
 
-		XQ_CORE_INFO("Creating window {0} ({1}, {2})", props.title, props.width, props.height);
+		XQ_CORE_INFO("Creating window {0} ({1}, {2})", _data.title, _data.width, _data.height);
 
 		if (s_GLFWWindowCount == 0)
 		{
@@ -42,14 +41,16 @@ namespace XQuant {
 		}
 
 		{
-			#if defined(HZ_DEBUG)
-				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
-			#endif
-			_window = glfwCreateWindow((int)props.width, (int)props.height, _data.title.c_str(), nullptr, nullptr);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+			_window = glfwCreateWindow((int)_data.width, (int)_data.height, _data.title.c_str(), nullptr, nullptr);
 			++s_GLFWWindowCount;
 		}
 
-		glfwSetWindowUserPointer(_window, &_data);
+		glfwSetWindowUserPointer(_window, &_data); // -----
+		glfwMakeContextCurrent(_window);
 		setVSync(true);
 
 		// Set GLFW callbacks
@@ -146,6 +147,7 @@ namespace XQuant {
 	}
 
 	void Window::onUpdate() {
+		glfwSwapBuffers(_window);
 		glfwPollEvents();
 	}
 

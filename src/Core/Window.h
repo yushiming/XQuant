@@ -47,6 +47,7 @@ namespace XQuant {
 		Window(const WindowProps& props);
 		virtual ~Window();
 
+		void onInit();
 		void onUpdate();
 
 		unsigned int getWidth() const { return _data.width; }
@@ -60,7 +61,6 @@ namespace XQuant {
 		void* getNativeWindow() const { return _window; }
 		static Scope<Window> create(const WindowProps& props = WindowProps());
 	private:
-		void init(const WindowProps& props);
 		void shutdown();
 	private:
 		GLFWwindow* _window;

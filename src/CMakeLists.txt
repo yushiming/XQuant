@@ -16,14 +16,12 @@ set(CORE_FILE
 	./src/Core/Application.h
 	./src/Core/Common.cpp
 	./src/Core/Common.h
-	./src/Core/Layer.cpp
-	./src/Core/Layer.h
 	./src/Core/Log.cpp
 	./src/Core/Log.h
 	./src/Core/Window.h
 	./src/Core/Window.cpp
-	./src/Core/LayerStack.h
-	./src/Core/LayerStack.cpp
+	./src/Core/FrameStack.h
+	./src/Core/FrameStack.cpp
 )
 
 set(DATA_FILE 
@@ -75,9 +73,16 @@ set(FRAMES_FILE
 	./src/Frames/FHelp.cpp
 	./src/Frames/FSetting.h
 	./src/Frames/FSetting.cpp
+	
+	./src/Frames/FTest.h
+	./src/Frames/FTest.cpp
+		
 )
 
 set(IMGUIEXT_FILE 
+	./src/ImGuiEXT/ImGuiLayer.h
+	./src/ImGuiEXT/ImGuiLayer.cpp
+	
 	./src/ImGuiEXT/ImGuiFrame.h
 	./src/ImGuiEXT/ImGuiFrame.cpp
 )

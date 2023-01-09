@@ -1,12 +1,12 @@
 //  Copyright [2023] <xiaxianyue>
 //=====================================================================================
 //
-//      Filename:  FAbout.h
+//      Filename:  ImGuiLayer.h
 //
-//   Description:  关于界面
+//   Description:  ImGui绘制层封装
 //
 //       Version:  1.0
-//       Created:  2023年1月6日 10时52分21秒
+//       Created:  2023年1月3日 20时18分31秒
 //      Revision:  none
 //      Compiler:  vs2019
 //
@@ -17,25 +17,29 @@
 
 #pragma once
 
-#include <string>
-
-#include "ImGuiEXT/ImGuiFrame.h"
 #include "Events/Event.h"
 
 namespace XQuant {
 
-	class FAbout : public ImGuiFrame
-	{
+	class ImGuiLayer {
 	public:
-		FAbout(std::string name);
-		~FAbout() = default;
+		ImGuiLayer();
+		virtual ~ImGuiLayer();
 
-		void onAttach() override;
-		void onDetach() override;
+		void onInit();
+		void onEvent(Event& e);
 
-		void onEvent(Event& e) override;
-		void onImGuiRender() override;
+		void begin();
+		void end();
 
+		void blockEvents(bool block) { _blockEvents = block; }
+
+		void setDarkThemeColors();
 	private:
+		void shutdown();
+	private:
+		bool _blockEvents = true;
+		float _time = 0.0f;
 	};
+
 }

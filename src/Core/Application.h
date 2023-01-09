@@ -20,12 +20,13 @@
 #include "Core/Base.h"
 
 #include "Core/Window.h"
-#include "Core/LayerStack.h"
+#include "Core/FrameStack.h"
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
 #include "Core/Timestep.h"
 
+#include "ImGuiEXT/ImGuiLayer.h"
 #include "ImGuiEXT/ImGuiFrame.h"
 
 namespace XQuant {
@@ -38,16 +39,17 @@ namespace XQuant {
 		Application(const std::string& name = "XQuant App");
 		virtual ~Application();
 
+		void onInit();
 		void onEvent(Event& e);
 
-		void pushLayer(Layer* layer);
-		void pushOverlay(Layer* layer);
+		void pushLayer(ImGuiFrame* frame);
+		void pushOverlay(ImGuiFrame* frame);
 
 		Window& getWindow() { return *_window; }
 
 		void close();
 
-		ImGuiFrame* getImGuiLayer() { return _imGuiLayer; }
+		ImGuiLayer* getImGuiLayer() { return _imGuiLayer; }
 
 		void run();
 	private:
@@ -55,10 +57,10 @@ namespace XQuant {
 		bool onWindowResize(WindowResizeEvent& e);
 	private:
 		Scope<Window> _window;
-		ImGuiFrame* _imGuiLayer;
+		ImGuiLayer* _imGuiLayer;
 		bool _running = true;
 		bool _minimized = false;
-		LayerStack _layerStack;
+		FrameStack _frameStack;
 		float _lastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
