@@ -1,12 +1,12 @@
 //  Copyright [2023] <xiaxianyue>
 //=====================================================================================
 //
-//      Filename:  FHelp.h
+//      Filename:  FileHelper.h
 //
-//   Description:  帮助界面
+//   Description:  文件及目录操作
 //
 //       Version:  1.0
-//       Created:  2023年1月6日 17时52分29秒
+//       Created:  2023年1月7日 11时25分05秒
 //      Revision:  none
 //      Compiler:  vs2019
 //
@@ -18,24 +18,16 @@
 #pragma once
 
 #include <string>
-
-#include "ImGuiEXT/ImGuiFrame.h"
-#include "Events/Event.h"
+#include <optional>
 
 namespace XQuant {
 
-	class FHelp : public ImGuiFrame
-	{
+	class FileHelper {
+
 	public:
-		FHelp(std::string name);
-		~FHelp() = default;
+		static std::string getAppPath();
+		static std::string getFullPath(const std::string path);
 
-		void onAttach() override;
-		void onDetach() override;
-		void onEvent(Event& e) override;
-		void onImGuiRender() override;
-
-	private:
-		bool _isShow = true;
 	};
+
 }

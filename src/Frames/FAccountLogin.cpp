@@ -21,6 +21,14 @@ namespace XQuant {
 
 	void FAccountLogin::onImGuiRender() {
 
+		ImGui::SetNextWindowSize(ImVec2(500, 400));
+		ImGui::Begin(_name.c_str(), &_isShow, ImGuiWindowFlags_NoResize);
+		if (ImGui::SmallButton("[Debug] FAccountLogin"))
+		{
+
+		}
+		ImGui::End();
+
 	}
 }
 

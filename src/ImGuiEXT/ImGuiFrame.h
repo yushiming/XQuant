@@ -39,10 +39,10 @@ namespace XQuant {
 
 		void blockEvents(bool block) { _blockEvents = block; }
 
-		const std::string& getName()const { return _debugName; }
+		const std::string& getName()const { return _name; }
 
 	protected:
-		std::string _debugName;
+		std::string _name;
 	private:
 		bool _blockEvents = true;
 		float _time = 0.0f;

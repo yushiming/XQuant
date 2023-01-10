@@ -6,6 +6,20 @@
 #include "Core/Assert.h"
 
 #include "Frames/FTest.h"
+#include "Frames/FMainMenuBar.h"
+#include "Frames/FMainToolBar.h"
+#include "Frames/FMainStatusBar.h"
+
+#include "Frames/FAccountLogin.h"
+#include "Frames/FSecurityList.h"
+#include "Frames/FTrendChart.h"
+#include "Frames/FBacktestRun.h"
+#include "Frames/FStrategyBlueprintRun.h"
+#include "Frames/FBacktestRecord.h"
+#include "Frames/FPositionDetails.h"
+#include "Frames/FLogOutput.h"
+#include "Frames/FStrategyBlueprintEdit.h"
+#include "Frames/FTradeRecord.h"
 
 namespace XQuant {
 
@@ -34,7 +48,33 @@ namespace XQuant {
 		auto ftest = new FTest("FTest");
 		pushLayer(ftest);
 
+		auto fmainmenubar = new FMainMenuBar(u8"菜单栏");
+		pushLayer(fmainmenubar);
 
+		auto fmaintoolbar = new FMainToolBar(u8"工具栏");
+		pushLayer(fmaintoolbar);
+
+		auto fmainstatusbar = new FMainStatusBar(u8"状态栏");
+		pushLayer(fmainstatusbar);
+
+		// 
+		auto fsecuritylist = new FSecurityList(u8"品种列表");
+		pushLayer(fsecuritylist);
+		// 
+		auto ftrendchart = new FSecurityList(u8"趋势图");
+		pushLayer(ftrendchart);
+		// 
+		auto fpositiondetails = new FPositionDetails(u8"持仓明细");
+		pushLayer(fpositiondetails);
+		// 日志输出
+		auto flogoutput = new FLogOutput(u8"日志");
+		pushLayer(flogoutput);
+		// 策略蓝图运行
+		auto fstrategyblueprintrun = new FStrategyBlueprintRun(u8"策略蓝图运行");
+		pushLayer(fstrategyblueprintrun);
+		// 交易记录 
+		auto ftraderecord = new FTradeRecord(u8"交易记录");
+		pushLayer(ftraderecord);		
 	}
 
 	void Application::pushLayer(ImGuiFrame* frame) {

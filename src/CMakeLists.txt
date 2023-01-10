@@ -42,6 +42,13 @@ set(EVENTS_FILE
 )
 
 set(FRAMES_FILE
+	./src/Frames/FMainMenuBar.h
+	./src/Frames/FMainMenuBar.cpp
+	./src/Frames/FMainToolBar.h
+	./src/Frames/FMainToolBar.cpp
+	./src/Frames/FMainStatusBar.h
+	./src/Frames/FMainStatusBar.cpp
+
 	./src/Frames/FAccountLogin.h
 	./src/Frames/FAccountLogin.cpp
 	./src/Frames/FSecurityList.h
@@ -137,6 +144,8 @@ set(STRATEGY_FILE
 )
 
 set(UTILS_FILE 
+	./src/Utils/FileHelper.h
+	./src/Utils/FileHelper.cpp
 	./src/Utils/ImGuiHelper.h
 	./src/Utils/ImGuiHelper.cpp
 	./src/Utils/RapidJsonHelper.h

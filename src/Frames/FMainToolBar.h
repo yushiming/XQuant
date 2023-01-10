@@ -1,12 +1,12 @@
 //  Copyright [2023] <xiaxianyue>
 //=====================================================================================
 //
-//      Filename:  FAccountLogin.h
+//      Filename:  FMainToolBar.h
 //
-//   Description:  账号登录界面 包含期货CTP、股票XTP、外汇、数字货币
+//   Description:  主窗口工具栏
 //
 //       Version:  1.0
-//       Created:  2023年1月6日 19时20分39秒
+//       Created:  2023年1月6日 10时49分28秒
 //      Revision:  none
 //      Compiler:  vs2019
 //
@@ -24,18 +24,24 @@
 
 namespace XQuant {
 
-	class FAccountLogin : public ImGuiFrame
+	class FMainToolBar : public ImGuiFrame
 	{
 	public:
-		FAccountLogin(std::string name);
-		~FAccountLogin() = default;
+		FMainToolBar(std::string name);
+		~FMainToolBar() = default;
 
 		void onAttach() override;
 		void onDetach() override;
+
 		void onEvent(Event& e) override;
 		void onImGuiRender() override;
 
 	private:
+
+	private:
 		bool _isShow = true;
+		const float _toolbarSize = 50;
+		float _menuBarHeight = 0;
+
 	};
 }

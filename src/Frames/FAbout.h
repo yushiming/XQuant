@@ -37,5 +37,6 @@ namespace XQuant {
 		void onImGuiRender() override;
 
 	private:
+		bool _isShow = true;
 	};
 }

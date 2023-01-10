@@ -10,7 +10,7 @@
 namespace XQuant {
 
 	ImGuiFrame::ImGuiFrame(std::string name)
-		: _debugName(name) {
+		: _name(name) {
 
 	}
 

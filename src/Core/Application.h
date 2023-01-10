@@ -57,7 +57,7 @@ namespace XQuant {
 		bool onWindowResize(WindowResizeEvent& e);
 	private:
 		Scope<Window> _window;
-		ImGuiLayer* _imGuiLayer;
+		ImGuiLayer* _imGuiLayer = nullptr;
 		bool _running = true;
 		bool _minimized = false;
 		FrameStack _frameStack;

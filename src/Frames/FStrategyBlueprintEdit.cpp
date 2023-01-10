@@ -20,7 +20,13 @@ namespace XQuant {
 	}
 
 	void FStrategyBlueprintEdit::onImGuiRender() {
+		//ImGui::SetNextWindowSize(ImVec2(500, 400));
+		ImGui::Begin(_name.c_str(), &_isShow, ImGuiWindowFlags_NoTitleBar);
+		if (ImGui::SmallButton("[Debug] FStrategyBlueprintEdit"))
+		{
 
+		}
+		ImGui::End();
 	}
 }
 

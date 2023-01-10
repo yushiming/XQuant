@@ -22,7 +22,7 @@ namespace XQuant {
 	}
 
 	void FTest::onImGuiRender() {
-		/*
+		
 		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
 		if (show_demo_window)
 			ImGui::ShowDemoWindow(&show_demo_window);
@@ -62,9 +62,9 @@ namespace XQuant {
 				show_another_window = false;
 			ImGui::End();
 		}
-		*/
+		
 
-		ImPlot::ShowDemoWindow();
+		//ImPlot::ShowDemoWindow();
 
 	}
 }
