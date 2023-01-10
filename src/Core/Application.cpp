@@ -20,6 +20,8 @@
 #include "Frames/FLogOutput.h"
 #include "Frames/FStrategyBlueprintEdit.h"
 #include "Frames/FTradeRecord.h"
+#include "Frames/FAccountLogin.h"
+
 
 namespace XQuant {
 
@@ -75,6 +77,12 @@ namespace XQuant {
 		// 交易记录 
 		auto ftraderecord = new FTradeRecord(u8"交易记录");
 		pushLayer(ftraderecord);		
+
+		//
+		// 登录记录 
+		auto faccountlogin = new FAccountLogin(u8"账号登录");
+		pushLayer(faccountlogin);
+
 	}
 
 	void Application::pushLayer(ImGuiFrame* frame) {

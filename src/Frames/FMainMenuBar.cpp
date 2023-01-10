@@ -23,14 +23,47 @@ namespace XQuant {
 
 	void FMainMenuBar::onImGuiRender() {
 
-		if (ImGui::BeginMainMenuBar())
-		{
-			if (ImGui::BeginMenu("File"))
-			{
+		if (ImGui::BeginMainMenuBar()) {
+			if (ImGui::BeginMenu(u8"ÏµÍ³")) {
+				if (ImGui::MenuItem(u8"ÕËºÅµÇÂ¼")) {
+				
+				}
+				if (ImGui::MenuItem(u8"ÍË³ö")) {
+
+				}
+
+				ImGui::EndMenu();
+			}
+			if (ImGui::BeginMenu(u8"ÊÓÍ¼")) {
+
+				ImGui::EndMenu();
+			}
+			if (ImGui::BeginMenu(u8"²ßÂÔ")) {
+				if (ImGui::MenuItem(u8"±à¼­»Ø²â")) {
+
+				}
+				//if (ImGui::MenuItem(u8"")) {
+
+				//}
+
+				ImGui::EndMenu();
+			}
+			if (ImGui::BeginMenu(u8"ÉèÖÃ")) {
+				ImGui::EndMenu();
+			}
+			if (ImGui::BeginMenu(u8"°ïÖú")) {
+				ImGui::EndMenu();
+			}
+			//_menuBarHeight = ImGui::GetCurrentWindow()->MenuBarHeight();
+			ImGui::EndMainMenuBar();
+		}
+	}
+
+	/*
 				//IMGUI_DEMO_MARKER("Examples/Menu");
 				ImGui::MenuItem("(demo menu)", NULL, false, false);
 				if (ImGui::MenuItem("New")) {}
-				if (ImGui::MenuItem("Open", "Ctrl+O")) {}
+
 				if (ImGui::BeginMenu("Open Recent"))
 				{
 					ImGui::MenuItem("fish_hat.c");
@@ -70,21 +103,8 @@ namespace XQuant {
 					ImGui::EndMenu();
 				}
 				ImGui::EndMenu();
-			}
-			if (ImGui::BeginMenu("Edit"))
-			{
-				if (ImGui::MenuItem("Undo", "CTRL+Z")) {}
-				if (ImGui::MenuItem("Redo", "CTRL+Y", false, false)) {}  // Disabled item
-				ImGui::Separator();
-				if (ImGui::MenuItem("Cut", "CTRL+X")) {}
-				if (ImGui::MenuItem("Copy", "CTRL+C")) {}
-				if (ImGui::MenuItem("Paste", "CTRL+V")) {}
-				ImGui::EndMenu();
-			}
-			_menuBarHeight = ImGui::GetCurrentWindow()->MenuBarHeight();
-			ImGui::EndMainMenuBar();
-		}
-	}
+	
+	*/
 
 }
 

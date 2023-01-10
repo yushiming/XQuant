@@ -24,6 +24,16 @@
 
 namespace XQuant {
 
+	enum EPlatform : int {
+		eNull             = 0,            // 
+		eFutures          = 1,            // 期货
+		eStocks           = 2,            // 股票
+		eForex            = 3,            // 外汇
+		eDigitalCash      = 4,            // 数字货币
+	};
+
+
+
 	enum EChapterType : int {
 		eChapterTypeNull = -1,
 		eMainLine = 0,		//	主线

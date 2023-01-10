@@ -14,6 +14,8 @@ set(CORE_FILE
 	./src/Core/TimeStep.h
 	./src/Core/Application.cpp
 	./src/Core/Application.h
+	./src/Core/Config.cpp
+	./src/Core/Config.h
 	./src/Core/Common.cpp
 	./src/Core/Common.h
 	./src/Core/Log.cpp
