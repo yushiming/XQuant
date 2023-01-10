@@ -21,6 +21,7 @@
 
 #include "ImGuiEXT/ImGuiFrame.h"
 #include "Events/Event.h"
+#include "Core/Common.h"
 
 namespace XQuant {
 
@@ -36,6 +37,22 @@ namespace XQuant {
 		void onImGuiRender() override;
 
 	private:
+		void drawFuturesLoginInfo();
+		void drawStocksLoginInfo();
+		void drawForexLoginInfo();
+		void drawDigitalCashLoginInfo();
+
+		void login(EPlatform platform);
+		void logout(EPlatform platform);
+
+	private:
 		bool _isShow = true;
+		bool _initWinPos = true;
+
+		const float _winWidth = 600.0f;
+		const float _winHeigth = 400.0f;
+
+		EPlatform _curSelPlatform = EPlatform::eNull;
+		EPlatform _curPlatform = EPlatform::eNull;
 	};
 }

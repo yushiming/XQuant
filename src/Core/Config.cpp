@@ -11,6 +11,11 @@ namespace XQuant {
 	int Config::ScreenWidth = 0;
 	int Config::ScreenHeigth = 0;
 
+	ImFont* Config::FontBig = nullptr;
+	ImFont* Config::FontMiddle = nullptr;
+	ImFont* Config::FontSmall = nullptr;
+	ImFont* Config::FontDefault = nullptr;
+
 	ImVec4 Config::ImGuiColWindowBg = ImVec4{ 0.1f, 0.105f, 0.11f, 1.0f };
 
 	// Headers

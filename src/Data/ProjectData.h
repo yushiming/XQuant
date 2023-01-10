@@ -24,6 +24,8 @@
 #include <fstream>
 #include <string>
 
+#include "Core/Common.h"
+
 namespace XQuant {
 
 	class ProjectData {
@@ -38,8 +40,12 @@ namespace XQuant {
 		std::string _projectPath = "";				// 工程路径 E:/tbc
 		std::string _exportPath = "C:/";            // 导出路径
 
+		EPlatform _platform = EPlatform::eNull;
+
 	public:
 		static const std::string worldXmlFileName;
+
+		 
 
 	private:
 		ProjectData();
@@ -61,6 +67,16 @@ namespace XQuant {
 			return _projectPath + "/" + "Assets";
 		}
 
+		EPlatform getCurPlatform() {
+			return _platform;
+		}
 
+		bool isCurPlatform(EPlatform platform) {
+			return _platform == platform;
+		}
+
+		bool setCurPlatform(EPlatform platform) {
+			_platform = platform;
+		}
 	};
 }

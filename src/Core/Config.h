@@ -28,7 +28,7 @@ namespace XQuant {
 
 	class Config {
 	public:
-		
+
 		static int WindowPosX;         // 窗口x坐标
 		static int WindowPosY;         // 窗口y坐标
 
@@ -37,6 +37,11 @@ namespace XQuant {
 
 		static int ScreenWidth;        // 屏幕宽度
 		static int ScreenHeigth;       // 屏幕高度
+
+		static ImFont* FontBig;
+		static ImFont* FontMiddle;
+		static ImFont* FontSmall;
+		static ImFont* FontDefault;
 
 		static ImVec4 ImGuiColWindowBg;
 

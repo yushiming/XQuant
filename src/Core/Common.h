@@ -21,6 +21,7 @@
 
 #include <vector>
 #include <string>
+#include <map>
 
 namespace XQuant {
 
@@ -32,6 +33,7 @@ namespace XQuant {
 		eDigitalCash      = 4,            // Êý×Ö»õ±Ò
 	};
 
+	extern std::map<EPlatform, std::string> PlatformName;
 
 
 	enum EChapterType : int {
