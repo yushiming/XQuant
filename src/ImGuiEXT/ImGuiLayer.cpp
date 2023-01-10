@@ -36,7 +36,7 @@ namespace XQuant {
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons;
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
 		io.ConfigFlags |= ImGuiCol_DockingEmptyBg;
-		io.Fonts->AddFontFromFileTTF(FileHelper::getFullPath("resources\\font\\fzkaiti.ttf").c_str(), 18.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
+		io.Fonts->AddFontFromFileTTF(FileHelper::getFullPath("resources\\font\\sysongti.ttf").c_str(), 18.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
 
 		//io.Fonts->AddFontFromFileTTF("assets/fonts/opensans/OpenSans-Bold.ttf", 18.0f);
 		//io.FontDefault = io.Fonts->AddFontFromFileTTF("assets/fonts/opensans/OpenSans-Regular.ttf", 18.0f);
