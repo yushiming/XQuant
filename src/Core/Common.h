@@ -35,14 +35,55 @@ namespace XQuant {
 
 	extern std::map<EPlatform, std::string> PlatformName;
 
-
-	enum EChapterType : int {
-		eChapterTypeNull = -1,
-		eMainLine = 0,		//	主线
-		eClimbingTower = 1,		//	爬塔
-		eChapterTypeCount = 2,
+	// contract 期货合约  IF2205
+	struct FuturesAccountInfo
+	{
+		char appID[64];
+		char authcode[64];
+		char product[64];
+		char brokerID[64];
+		char userID[64];
+		char password[64];
+		char marketFront[64];
+		char tradeFront[64];
 	};
 
-	extern std::vector<std::string> sectionTypesEN;
+	struct StocksAccountInfo
+	{
+		char appID[64];
+		char authcode[64];
+		char product[64];
+		char brokerID[64];
+		char userID[64];
+		char password[64];
+		char marketFront[64];
+		char tradeFront[64];
+	};
+
+	struct ForexAccountInfo
+	{
+		char appID[64];
+		char authcode[64];
+		char product[64];
+		char brokerID[64];
+		char userID[64];
+		char password[64];
+		char marketFront[64];
+		char tradeFront[64];
+	};
+
+	struct DigitalCashAccountInfo
+	{
+		char appID[64];        
+		char authcode[64];     
+		char product[64];      
+		char brokerID[64];     
+		char userID[64];       
+		char password[64];     
+		char marketFront[64];  
+		char tradeFront[64];   
+	};
+
+
 
 }

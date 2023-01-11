@@ -20,7 +20,6 @@
 #include "Frames/FLogOutput.h"
 #include "Frames/FStrategyBlueprintEdit.h"
 #include "Frames/FTradeRecord.h"
-#include "Frames/FAccountLogin.h"
 
 
 namespace XQuant {
@@ -45,44 +44,53 @@ namespace XQuant {
 		// 创建imgui层
 		_imGuiLayer = new ImGuiLayer();
 		_imGuiLayer->onInit();
+		_imGuiLayer->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+
+		// 初始化ProjectData
+		_projectData = ProjectData::instance();
+		_projectData->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 
 		// TODO 创建多个窗体实例(imgui frame) 并加入_frameStack
 		auto ftest = new FTest("FTest");
+		ftest->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(ftest);
 
 		auto fmainmenubar = new FMainMenuBar(u8"菜单栏");
+		fmainmenubar->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(fmainmenubar);
 
 		auto fmaintoolbar = new FMainToolBar(u8"工具栏");
+		fmaintoolbar->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(fmaintoolbar);
 
 		auto fmainstatusbar = new FMainStatusBar(u8"状态栏");
+		fmainstatusbar->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(fmainstatusbar);
 
 		// 
 		auto fsecuritylist = new FSecurityList(u8"品种列表");
+		fsecuritylist->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(fsecuritylist);
 		// 
 		auto ftrendchart = new FSecurityList(u8"趋势图");
+		ftrendchart->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(ftrendchart);
 		// 
 		auto fpositiondetails = new FPositionDetails(u8"持仓明细");
+		fpositiondetails->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(fpositiondetails);
 		// 日志输出
 		auto flogoutput = new FLogOutput(u8"日志");
+		flogoutput->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(flogoutput);
 		// 策略蓝图运行
 		auto fstrategyblueprintrun = new FStrategyBlueprintRun(u8"策略蓝图运行");
+		fstrategyblueprintrun->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(fstrategyblueprintrun);
 		// 交易记录 
 		auto ftraderecord = new FTradeRecord(u8"交易记录");
-		pushLayer(ftraderecord);		
-
-		//
-		// 登录记录 
-		auto faccountlogin = new FAccountLogin(u8"账号登录");
-		pushLayer(faccountlogin);
-
+		ftraderecord->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		pushLayer(ftraderecord);
 	}
 
 	void Application::pushLayer(ImGuiFrame* frame) {
@@ -95,6 +103,14 @@ namespace XQuant {
 		frame->onAttach();
 	}
 
+	void Application::setDeleteImGuiFrame(ImGuiFrame* frame) {
+		_updateDeleteVector.push_back(frame);
+	}
+
+	void Application::setAddVectorImGuiFrame(ImGuiFrame* frame) {
+		_updateAddVector.push_back(frame);
+	}
+
 	void Application::close() {
 		_running = false;
 	}
@@ -103,8 +119,16 @@ namespace XQuant {
 		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<WindowCloseEvent>(XQ_BIND_EVENT_FN(Application::onWindowClose));
 		dispatcher.dispatch<WindowResizeEvent>(XQ_BIND_EVENT_FN(Application::onWindowResize));
+		if (e.handled)
+			return;
+
+		_projectData->onEvent(e);
+		if (e.handled)
+			return;
 
 		_imGuiLayer->onEvent(e);
+		if (e.handled)
+			return;
 
 		for (auto it = _frameStack.rbegin(); it != _frameStack.rend(); ++it) {
 			if (e.handled)
@@ -136,6 +160,23 @@ namespace XQuant {
 			}
 
 			_window->onUpdate();
+			
+			// add frame 
+			if (!_updateAddVector.empty()) {
+				for (auto& e : _updateAddVector)
+					_frameStack.pushLayer(e);
+
+				_updateAddVector.clear();
+			}
+
+			// delete all updates that are removed in update
+			if (!_updateDeleteVector.empty()) {
+				for (auto& e : _updateDeleteVector)
+					_frameStack.popLayer(e);
+
+				_updateDeleteVector.clear();
+			}
+
 		}
 	}
 

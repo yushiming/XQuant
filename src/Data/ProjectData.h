@@ -23,29 +23,15 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <map>
+#include <functional>
 
 #include "Core/Common.h"
+#include "Events/Event.h"
 
 namespace XQuant {
 
 	class ProjectData {
-
-	private:
-		static ProjectData* _instance;
-		static std::once_flag _flag;
-
-		std::string _version = "1.1.0";
-
-		std::string _projectName = "";				// 工程名字
-		std::string _projectPath = "";				// 工程路径 E:/tbc
-		std::string _exportPath = "C:/";            // 导出路径
-
-		EPlatform _platform = EPlatform::eNull;
-
-	public:
-		static const std::string worldXmlFileName;
-
-		 
 
 	private:
 		ProjectData();
@@ -53,15 +39,43 @@ namespace XQuant {
 		~ProjectData();
 
 	public:
+		using EventCallbackFn = std::function<void(Event&)>;
+
 		static ProjectData* instance();
 
 		static void destroy();
 
-	public:
+		void onInit();
+		void onEvent(Event& e);
 
-		std::string projectPath() {
-			return _projectPath;
-		}
+		// 登录
+		void login(EPlatform platform);
+
+		// 退出
+		void logout(EPlatform platform);
+
+
+		std::string getConfigPath(EPlatform platform);
+		std::string getConfigFullPathFile(EPlatform platform);
+
+		// 账号配置数据读写
+		bool readAccountConfig();
+		void writerAccountConfig();
+
+		bool readFuturesAccountJsonFile(std::string filename);
+		void writerFuturesAccountJsonFile();
+
+		bool readStocksAccountJsonFile(std::string filename);
+		void writerStocksAccountJsonFile();
+
+		bool readForexAccountJsonFile(std::string filename);
+		void writerForexAccountJsonFile();
+
+		bool readDigitalCashAccountJsonFile(std::string filename);
+		void writerDigitalCashAccountJsonFile();
+
+
+
 
 		std::string assetsPath() {
 			return _projectPath + "/" + "Assets";
@@ -78,5 +92,32 @@ namespace XQuant {
 		bool setCurPlatform(EPlatform platform) {
 			_platform = platform;
 		}
+
+		void setEventCallback(const EventCallbackFn& callback) { _eventCallback = callback; }
+
+	public:
+		static const std::string ConfigJsonFileName;
+
+		static FuturesAccountInfo* futuresAccountInfo;
+		static StocksAccountInfo* stocksAccountInfo;
+		static ForexAccountInfo* forexAccountInfo;
+		static DigitalCashAccountInfo* digitalcashAccountInfo;
+		
+	private:
+		static ProjectData* _instance;
+		static std::once_flag _flag;
+
+		std::string _version = "1.1.0";
+
+		std::string _projectName = "";				// 工程名字
+		std::string _projectPath = "";				// 工程路径 E:/tbc
+		std::string _exportPath = "C:/";            // 导出路径
+
+		EPlatform _platform = EPlatform::eNull;
+
+		EventCallbackFn _eventCallback;
+
+		std::map<EPlatform, std::string> _configPath;
+
 	};
 }

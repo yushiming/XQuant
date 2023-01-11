@@ -28,6 +28,8 @@ namespace XQuant {
 	class ImGuiFrame
 	{
 	public:
+		using EventCallbackFn = std::function<void(Event&)>;
+
 		ImGuiFrame(std::string name);
 		virtual ~ImGuiFrame();
 
@@ -37,8 +39,8 @@ namespace XQuant {
 		virtual void onImGuiRender() { }
 		virtual void onEvent(Event& e);
 
+		void setEventCallback(const EventCallbackFn& callback) { _eventCallback = callback; }
 		void blockEvents(bool block) { _blockEvents = block; }
-
 		const std::string& getName()const { return _name; }
 
 	protected:
@@ -46,6 +48,7 @@ namespace XQuant {
 	private:
 		bool _blockEvents = true;
 		float _time = 0.0f;
+		EventCallbackFn _eventCallback;
 	};
 
 }

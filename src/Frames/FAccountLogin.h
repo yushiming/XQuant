@@ -42,9 +42,6 @@ namespace XQuant {
 		void drawForexLoginInfo();
 		void drawDigitalCashLoginInfo();
 
-		void login(EPlatform platform);
-		void logout(EPlatform platform);
-
 	private:
 		bool _isShow = true;
 		bool _initWinPos = true;

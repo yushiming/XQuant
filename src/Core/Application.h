@@ -23,6 +23,7 @@
 #include "Core/FrameStack.h"
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
+#include "Data/ProjectData.h"
 
 #include "Core/Timestep.h"
 
@@ -46,11 +47,12 @@ namespace XQuant {
 		void pushOverlay(ImGuiFrame* frame);
 
 		Window& getWindow() { return *_window; }
-
-		void close();
-
 		ImGuiLayer* getImGuiLayer() { return _imGuiLayer; }
 
+		void setDeleteImGuiFrame(ImGuiFrame* frame);
+		void setAddVectorImGuiFrame(ImGuiFrame* frame);
+
+		void close();
 		void run();
 	private:
 		bool onWindowClose(WindowCloseEvent& e);
@@ -62,6 +64,11 @@ namespace XQuant {
 		bool _minimized = false;
 		FrameStack _frameStack;
 		float _lastFrameTime = 0.0f;
+
+		ProjectData* _projectData = nullptr;
+
+		std::vector<ImGuiFrame*> _updateDeleteVector;
+		std::vector<ImGuiFrame*> _updateAddVector;
 	private:
 		static Application* s_Instance;
 	};

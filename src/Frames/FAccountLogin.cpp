@@ -2,6 +2,7 @@
 
 #include "Data/ProjectData.h"
 #include "Core/Config.h"
+#include "Core/Application.h"
 
 namespace XQuant {
 
@@ -11,7 +12,9 @@ namespace XQuant {
 	}
 
 	void FAccountLogin::onAttach() {
+		_isShow = true;
 		_curPlatform = _curSelPlatform = ProjectData::instance()->getCurPlatform();
+
 	}
 
 	void FAccountLogin::onDetach() {
@@ -24,18 +27,24 @@ namespace XQuant {
 
 	void FAccountLogin::onImGuiRender() {
 
+		if (!_isShow) {
+			// TOFIX 这地方可以改为事件
+			Application::instance().setDeleteImGuiFrame(this);
+			return;
+		}
+
 		if (_initWinPos) {
 			ImGui::SetNextWindowPos({ float(Config::ScreenWidth - _winWidth) / 2, float(Config::ScreenHeigth - _winHeigth) / 2 });
 			_initWinPos = false;
-		}	
+		}
 
-		// ImGui::SetNextWindowSize(ImVec2(_winWidth, _winHeigth));
 		ImGui::Begin(_name.c_str(), &_isShow, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove);
-		ImGui::SetWindowSize({_winWidth, _winHeigth });
+		// ImGui::SetNextWindowSize(ImVec2(_winWidth, _winHeigth));
+		ImGui::SetWindowSize({ _winWidth, _winHeigth });
 
 		// 绘制中间分隔线
-		ImGui::GetWindowDrawList()->AddLine({ImGui::GetWindowPos().x + 180.0f, ImGui::GetWindowPos().y + 30.0f }, 
-			{ImGui::GetWindowPos().x + 180.0f, ImGui::GetWindowPos().y + 390.0f }, ImColor(111, 111, 111, 255));
+		ImGui::GetWindowDrawList()->AddLine({ ImGui::GetWindowPos().x + 180.0f, ImGui::GetWindowPos().y + 30.0f },
+			{ ImGui::GetWindowPos().x + 180.0f, ImGui::GetWindowPos().y + 390.0f }, ImColor(111, 111, 111, 255));
 
 		ImGui::SetCursorPos({ 60.0f, 30.0f });
 		//ImGui::PushFont(Config::FontBig);
@@ -44,9 +53,9 @@ namespace XQuant {
 
 		// 绘制左边平台按钮
 		// 期货
-		ImGui::SetCursorPos({10.0f,65.0f});
-		ImGui::PushStyleColor(ImGuiCol_Button, _curSelPlatform == EPlatform::eFutures ? Config::ImGuiColButton: ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-		if (ImGui::Button(PlatformName[EPlatform::eFutures].c_str(), {150.0f, 40.0f }))
+		ImGui::SetCursorPos({ 10.0f,65.0f });
+		ImGui::PushStyleColor(ImGuiCol_Button, _curSelPlatform == EPlatform::eFutures ? Config::ImGuiColButton : ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+		if (ImGui::Button(PlatformName[EPlatform::eFutures].c_str(), { 150.0f, 40.0f }))
 		{
 			_curSelPlatform = EPlatform::eFutures;
 		}
@@ -98,47 +107,57 @@ namespace XQuant {
 		}
 
 		// 登录 退出
-		ImGui::SetCursorPos({160.0f, 320.0f });
+		ImGui::SetCursorPos({ 160.0f, 320.0f });
 		ImGui::PushStyleColor(ImGuiCol_Button, _curSelPlatform == _curPlatform ? ImVec4(1.0f, 0.0f, 0.0f, 0.0f) : ImVec4(0.0f, 1.0f, 0.0f, 0.0f));
-		if (ImGui::Button(_curSelPlatform == _curPlatform ? u8"退出" : u8"登录", {80.0f, 30.0f}))
+		if (ImGui::Button(_curSelPlatform == _curPlatform ? u8"退出" : u8"登录", { 80.0f, 30.0f }))
 		{
-			_curSelPlatform == _curPlatform ? logout(_curSelPlatform) : login(_curSelPlatform);
+			// TOFIX 以事件的方式通知 ProjectData 执行登录 退出操作
+			//_curSelPlatform == _curPlatform ? logout(_curSelPlatform) : login(_curSelPlatform);
+			
 		}
 		ImGui::PopStyleColor();
-
 		ImGui::EndChild();
-
-		ImGui::End();
+		ImGui::End();		
 	}
 
 	void FAccountLogin::drawFuturesLoginInfo() {
-		ImGui::SetCursorPos({ 190.0f, 30.0f });
-		ImGui::Text(u8"暂无该平台登录");
+		auto ac = ProjectData::futuresAccountInfo;
 
+		ImGui::SetCursorPos({ 50.0f, 30.0f });
+		ImGui::InputText("AppID", ac->appID, IM_ARRAYSIZE(ac->appID));
+		ImGui::SetCursorPos({ 50.0f, 60.0f });
+		ImGui::InputText("Authcode", ac->authcode, IM_ARRAYSIZE(ac->authcode), ImGuiInputTextFlags_CharsDecimal);
+		ImGui::SetCursorPos({ 50.0f, 90.0f });
+		ImGui::InputText("Product", ac->product, IM_ARRAYSIZE(ac->product));
+		ImGui::SetCursorPos({ 50.0f, 120.0f });
+		ImGui::InputText("BrokerID", ac->brokerID, IM_ARRAYSIZE(ac->brokerID), ImGuiInputTextFlags_CharsDecimal);
+		ImGui::SetCursorPos({ 50.0f, 150.0f });
+		ImGui::InputText("UserID", ac->userID, IM_ARRAYSIZE(ac->userID), ImGuiInputTextFlags_CharsDecimal);
+		ImGui::SetCursorPos({ 50.0f, 180.0f });
+		ImGui::InputText("Password", ac->password, IM_ARRAYSIZE(ac->password), ImGuiInputTextFlags_Password);
+
+		ImGui::SetCursorPos({ 50.0f, 210.0f });
+		ImGui::InputText("MarketFront", ac->marketFront, IM_ARRAYSIZE(ac->marketFront));
+		ImGui::SetCursorPos({ 50.0f, 240.0f });
+		ImGui::InputText("TradeFront", ac->tradeFront, IM_ARRAYSIZE(ac->tradeFront));
 	}
 
 	void FAccountLogin::drawStocksLoginInfo() {
-		ImGui::SetCursorPos({ 190.0f, 30.0f });
+		ImGui::SetCursorPos({10.0f, 10.0f });
 		ImGui::Text(u8"暂无该平台登录");
 	}
 
 	void FAccountLogin::drawForexLoginInfo() {
-		ImGui::SetCursorPos({ 190.0f, 30.0f });
+		ImGui::SetCursorPos({10.0f, 10.0f });
 		ImGui::Text(u8"暂无该平台登录");
 	}
 
 	void FAccountLogin::drawDigitalCashLoginInfo() {
-		ImGui::SetCursorPos({ 190.0f, 30.0f });
+		ImGui::SetCursorPos({10.0f, 10.0f });
 		ImGui::Text(u8"暂无该平台登录");
 	}
 
-	void FAccountLogin::login(EPlatform platform) {
-		// auto projectData = ProjectData::instance();
-	}
 
-	void FAccountLogin::logout(EPlatform platform) {
-
-	}
 
 }
 

@@ -1,0 +1,11 @@
+{	
+	"appID": "simnow_client_test",
+	"authcode": "0000000000000000",
+	"product": "simnow",
+	"brokerID": "9999",
+	"userID": "208739",
+	"password": "ysm775589@@",
+	"marketFront": "tcp://180.168.146.187:10111",
+	"tradeFront": "tcp://180.168.146.187:10101"
+}
+

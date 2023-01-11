@@ -23,6 +23,8 @@ namespace XQuant {
 
 	class ImGuiLayer {
 	public:
+		using EventCallbackFn = std::function<void(Event&)>;
+
 		ImGuiLayer();
 		virtual ~ImGuiLayer();
 
@@ -32,6 +34,8 @@ namespace XQuant {
 		void begin();
 		void end();
 
+		void setEventCallback(const EventCallbackFn& callback) { _eventCallback = callback; }
+
 		void blockEvents(bool block) { _blockEvents = block; }
 
 		void setDarkThemeColors();
@@ -40,6 +44,8 @@ namespace XQuant {
 	private:
 		bool _blockEvents = true;
 		float _time = 0.0f;
+
+		EventCallbackFn _eventCallback;
 	};
 
 }

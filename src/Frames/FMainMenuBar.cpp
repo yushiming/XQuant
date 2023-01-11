@@ -1,6 +1,11 @@
-#include "Frames/FMainMenuBar.h"
 
 #include <imgui_internal.h>
+
+#include "Frames/FMainMenuBar.h"
+#include "Frames/FAccountLogin.h"
+
+#include "Core/Application.h"
+
 
 namespace XQuant {
 
@@ -26,7 +31,10 @@ namespace XQuant {
 		if (ImGui::BeginMainMenuBar()) {
 			if (ImGui::BeginMenu(u8"系统")) {
 				if (ImGui::MenuItem(u8"账号登录")) {
-				
+					// 登录记录 			
+					// TOFIX 这地方可以改为事件 添加新界面到窗口中
+					auto faccountlogin = new FAccountLogin(u8"账号登录");
+					Application::instance().setAddVectorImGuiFrame(faccountlogin);
 				}
 				if (ImGui::MenuItem(u8"退出")) {
 

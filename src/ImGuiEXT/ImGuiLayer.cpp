@@ -39,7 +39,7 @@ namespace XQuant {
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
 		io.ConfigFlags |= ImGuiCol_DockingEmptyBg;
 
-		// 多个字体及字体大小会极大影响内存
+		// 多个字体及字体大小会极大影响内存 fzkaiti.ttf
 		Config::FontBig = io.Fonts->AddFontFromFileTTF(FileHelper::getFullPath("resources\\font\\fzkaiti.ttf").c_str(), 16.0f, NULL,
 			io.Fonts->GetGlyphRangesChineseFull());
 
