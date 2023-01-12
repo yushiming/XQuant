@@ -73,7 +73,7 @@ namespace XQuant {
 		fsecuritylist->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(fsecuritylist);
 		// 
-		auto ftrendchart = new FSecurityList(u8"Ç÷ÊÆÍ¼");
+		auto ftrendchart = new FTrendChart(u8"Ç÷ÊÆÍ¼");
 		ftrendchart->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(ftrendchart);
 		// 
@@ -165,7 +165,7 @@ namespace XQuant {
 			// add frame 
 			if (!_updateAddVector.empty()) {
 				for (auto& e : _updateAddVector)
-					_frameStack.pushLayer(e);
+					pushLayer(e);
 
 				_updateAddVector.clear();
 			}

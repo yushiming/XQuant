@@ -14,6 +14,9 @@ namespace XQuant {
 	void FAccountLogin::onAttach() {
 		_isShow = true;
 		_curPlatform = _curSelPlatform = ProjectData::instance()->getCurPlatform();
+		if (_curPlatform == EPlatform::eNull) {
+			_curSelPlatform = EPlatform::eFutures;
+		}
 
 	}
 

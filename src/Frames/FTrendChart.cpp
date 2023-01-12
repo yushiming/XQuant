@@ -20,8 +20,8 @@ namespace XQuant {
 	}
 
 	void FTrendChart::onImGuiRender() {
-		ImGui::SetNextWindowSize(ImVec2(500, 400));
-		ImGui::Begin("111111", &_isShow, ImGuiWindowFlags_None);
+		// ImGui::SetNextWindowSize(ImVec2(500, 400));
+		ImGui::Begin(_name.c_str(), &_isShow, ImGuiWindowFlags_None);
 		if (ImGui::SmallButton("[Debug] FTrendChart"))
 		{
 
