@@ -7,7 +7,7 @@ namespace XQuant {
 	ProjectData* ProjectData::_instance = nullptr;
 	std::once_flag ProjectData::_flag;
 
-	const std::string ProjectData::ConfigJsonFileName = "World.dpsProj";
+	const std::string ProjectData::ConfigJsonFileName = "config.json";
 
 	FuturesAccountInfo* ProjectData::futuresAccountInfo = new FuturesAccountInfo();
 	StocksAccountInfo* ProjectData::stocksAccountInfo = new StocksAccountInfo();
@@ -40,17 +40,15 @@ namespace XQuant {
 	}
 
 	void ProjectData::onInit() {
-		std::string path = FileHelper::getFullPath("Futures\\");
-		_configPath.emplace(EPlatform::eFutures, path);
+		_appPath = FileHelper::getAppPath();
+		_configPath = _appPath + "\\config";
+		_resourcesPath = _appPath + "\\resources";
+		_tempPath = _appPath + "\\temp";
 
-		path = FileHelper::getFullPath("Stocks\\");
-		_configPath.emplace(EPlatform::eStocks, path);
-
-		path = FileHelper::getFullPath("Forex\\");
-		_configPath.emplace(EPlatform::eForex, path);
-
-		path = FileHelper::getFullPath("DigitalCash\\");
-		_configPath.emplace(EPlatform::eDigitalCash, path);
+		_platformConfigPath.emplace(EPlatform::eFutures, _configPath + "\\Futures");
+		_platformConfigPath.emplace(EPlatform::eStocks, _configPath + "\\Stocks");
+		_platformConfigPath.emplace(EPlatform::eForex, _configPath + "\\Forex");
+		_platformConfigPath.emplace(EPlatform::eDigitalCash, _configPath + "\\DigitalCash");		
 
 	}
 
@@ -69,14 +67,6 @@ namespace XQuant {
 
 	void ProjectData::logout(EPlatform platform) {
 
-	}
-
-	std::string ProjectData::getConfigPath(EPlatform platform) {
-		return _configPath[EPlatform::eFutures];
-	}
-
-	std::string ProjectData::getConfigFullPathFile(EPlatform platform) {
-		return _configPath[EPlatform::eFutures] + ConfigJsonFileName;
 	}
 
 	bool ProjectData::readAccountConfig() {
@@ -117,6 +107,10 @@ namespace XQuant {
 
 	void ProjectData::writerDigitalCashAccountJsonFile() {
 
+	}
+
+	std::string ProjectData::getConfigFullPathFile(EPlatform platform) {
+		return _platformConfigPath[EPlatform::eFutures] + ConfigJsonFileName;
 	}
 
 }

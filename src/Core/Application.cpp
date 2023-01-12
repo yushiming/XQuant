@@ -48,6 +48,7 @@ namespace XQuant {
 
 		// 初始化ProjectData
 		_projectData = ProjectData::instance();
+		_projectData->onInit();
 		_projectData->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 
 		// TODO 创建多个窗体实例(imgui frame) 并加入_frameStack

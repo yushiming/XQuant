@@ -91,5 +91,11 @@ namespace XQuant{
             return false;
         }
 
+        static std::wstring utf8ToWideChar(const std::string& utf8);
+
+        static std::string wideCharToUtf8(const std::wstring& wideChar);
+
+        static std::string utf8ToMultiByte(const std::string& utf8);
+
     };
 }

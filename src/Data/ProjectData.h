@@ -55,9 +55,6 @@ namespace XQuant {
 		void logout(EPlatform platform);
 
 
-		std::string getConfigPath(EPlatform platform);
-		std::string getConfigFullPathFile(EPlatform platform);
-
 		// 账号配置数据读写
 		bool readAccountConfig();
 		void writerAccountConfig();
@@ -75,10 +72,20 @@ namespace XQuant {
 		void writerDigitalCashAccountJsonFile();
 
 
+		std::string appPath() {
+			return _appPath;
+		}
 
+		std::string configPath() {
+			return _configPath;
+		}
 
-		std::string assetsPath() {
-			return _projectPath + "/" + "Assets";
+		std::string resourcesPath() {
+			return _resourcesPath;
+		}
+
+		std::string tempPath() {
+			return _tempPath;
 		}
 
 		EPlatform getCurPlatform() {
@@ -92,6 +99,8 @@ namespace XQuant {
 		bool setCurPlatform(EPlatform platform) {
 			_platform = platform;
 		}
+
+		std::string getConfigFullPathFile(EPlatform platform);
 
 		void setEventCallback(const EventCallbackFn& callback) { _eventCallback = callback; }
 
@@ -110,14 +119,16 @@ namespace XQuant {
 		std::string _version = "1.1.0";
 
 		std::string _projectName = "";				// 工程名字
-		std::string _projectPath = "";				// 工程路径 E:/tbc
-		std::string _exportPath = "C:/";            // 导出路径
+		std::string _appPath = "";				    // 应用程序路径
+		std::string _configPath = "";				// 配置文件路径
+		std::string _resourcesPath = "";			// 资源文件路径
+		std::string _tempPath = "";			        // 缓存文件路径
 
 		EPlatform _platform = EPlatform::eNull;
 
 		EventCallbackFn _eventCallback;
 
-		std::map<EPlatform, std::string> _configPath;
+		std::map<EPlatform, std::string> _platformConfigPath;
 
 	};
 }

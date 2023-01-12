@@ -1,6 +1,9 @@
 # CMake 最低版本号要求
 cmake_minimum_required (VERSION 3.2)
 
+# 设置预处理宏定义
+add_compile_definitions(UNICODE)
+
 # 设置变量名字
 set(PROJECT_NAME XQuant)
 # 设置使用C++17标准
