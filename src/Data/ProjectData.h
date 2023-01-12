@@ -59,16 +59,16 @@ namespace XQuant {
 		bool readAccountConfig();
 		void writerAccountConfig();
 
-		bool readFuturesAccountJsonFile(std::string filename);
+		bool readFuturesAccountJsonFile();
 		void writerFuturesAccountJsonFile();
 
-		bool readStocksAccountJsonFile(std::string filename);
+		bool readStocksAccountJsonFile();
 		void writerStocksAccountJsonFile();
 
-		bool readForexAccountJsonFile(std::string filename);
+		bool readForexAccountJsonFile();
 		void writerForexAccountJsonFile();
 
-		bool readDigitalCashAccountJsonFile(std::string filename);
+		bool readDigitalCashAccountJsonFile();
 		void writerDigitalCashAccountJsonFile();
 
 

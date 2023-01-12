@@ -72,7 +72,7 @@ namespace XQuant {
 		{
 			if (!DeleteFile(_wNew.c_str()))
 			{
-				XQ_CORE_ERROR("Fail to delete file %s !Error code is 0x%x", newfullpath.c_str(), GetLastError());
+				XQ_CORE_ERROR("Fail to delete file {0} !Error code is {1}", newfullpath.c_str(), GetLastError());
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace XQuant {
 		}
 		else
 		{
-			XQ_CORE_ERROR("Fail to rename file %s to %s !Error code is 0x%x", oldfullpath.c_str(), newfullpath.c_str(), GetLastError());
+			XQ_CORE_ERROR("Fail to rename file {0} to {1} !Error code is {2}", oldfullpath.c_str(), newfullpath.c_str(), GetLastError());
 			return false;
 		}
 	}
@@ -148,7 +148,7 @@ namespace XQuant {
 					BOOL ret = CreateDirectory(subpath.c_str(), NULL);
 					if (!ret && ERROR_ALREADY_EXISTS != GetLastError())
 					{
-						XQ_CORE_ERROR("Fail create directory %s !Error code is 0x%x", utf8Path.c_str(), GetLastError());
+						XQ_CORE_ERROR("Fail create directory {0} !Error code is {1}", utf8Path.c_str(), GetLastError());
 						return false;
 					}
 				}
@@ -168,7 +168,7 @@ namespace XQuant {
 		}
 		else
 		{
-			XQ_CORE_ERROR("Fail remove file %s !Error code is 0x%x", filepath.c_str(), GetLastError());
+			XQ_CORE_ERROR("Fail remove file {0} !Error code is {1}", filepath.c_str(), GetLastError());
 			return false;
 		}
 	}
