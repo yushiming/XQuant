@@ -45,6 +45,10 @@ namespace XQuant {
 
 	protected:
 		std::string _name;
+		bool _isShow = true;
+		bool _initWinPos = true;
+		ImVec2 _winPos;
+		ImVec2 _winSize;
 	private:
 		bool _blockEvents = true;
 		float _time = 0.0f;

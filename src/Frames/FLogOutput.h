@@ -36,7 +36,15 @@ namespace XQuant {
 		void onImGuiRender() override;
 
 	private:
-		bool _isShow = true;
+		void clearLog();
+
+	private:
+		ImGuiTextFilter          _filter;
+		bool                     _autoScroll;
+		bool	                 _copyToClipboard;
+		std::vector<std::string> _logItems;
+		ImVec4					 _logItemColor;
+		bool                     _logItemHasColor;
 
 	};
 }

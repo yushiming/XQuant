@@ -145,7 +145,7 @@ set(STRATEGY_FILE
 #	./src/Strategy/
 )
 
-set(UTILS_FILE 
+set(UTILS_FILE
 	./src/Utils/FileHelper.h
 	./src/Utils/FileHelper.cpp
 	./src/Utils/ImGuiHelper.h
@@ -154,6 +154,8 @@ set(UTILS_FILE
 	./src/Utils/RapidJsonHelper.cpp
 	./src/Utils/StringHelper.h
 	./src/Utils/StringHelper.cpp
+	./src/Utils/TimeHelper.h
+	./src/Utils/TimeHelper.cpp
 	./src/Utils/FileDialogs.h
 	./src/Utils/FileDialogs.cpp		
 )

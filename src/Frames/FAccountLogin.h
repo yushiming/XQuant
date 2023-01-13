@@ -43,11 +43,6 @@ namespace XQuant {
 		void drawDigitalCashLoginInfo();
 
 	private:
-		bool _isShow = true;
-		bool _initWinPos = true;
-
-		const float _winWidth = 600.0f;
-		const float _winHeigth = 400.0f;
 
 		EPlatform _curSelPlatform = EPlatform::eNull;
 		EPlatform _curPlatform = EPlatform::eNull;

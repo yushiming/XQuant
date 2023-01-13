@@ -13,11 +13,12 @@ namespace XQuant {
 
 	void FAccountLogin::onAttach() {
 		_isShow = true;
+		_winSize = ImVec2(600.0f, 400.0f);
+
 		_curPlatform = _curSelPlatform = ProjectData::instance()->getCurPlatform();
 		if (_curPlatform == EPlatform::eNull) {
 			_curSelPlatform = EPlatform::eFutures;
 		}
-
 	}
 
 	void FAccountLogin::onDetach() {
@@ -37,13 +38,15 @@ namespace XQuant {
 		}
 
 		if (_initWinPos) {
-			ImGui::SetNextWindowPos({ float(Config::ScreenWidth - _winWidth) / 2, float(Config::ScreenHeigth - _winHeigth) / 2 });
+			ImGui::SetNextWindowPos({ float(Config::ScreenWidth - _winSize.x) / 2, float(Config::ScreenHeigth - _winSize.y) / 2 });
 			_initWinPos = false;
 		}
 
 		ImGui::Begin(_name.c_str(), &_isShow, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove);
+
+		//ImGui::Begin(_name.c_str(), &_isShow, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove);
 		// ImGui::SetNextWindowSize(ImVec2(_winWidth, _winHeigth));
-		ImGui::SetWindowSize({ _winWidth, _winHeigth });
+		ImGui::SetWindowSize(_winSize);
 
 		// 绘制中间分隔线
 		ImGui::GetWindowDrawList()->AddLine({ ImGui::GetWindowPos().x + 180.0f, ImGui::GetWindowPos().y + 30.0f },
@@ -120,6 +123,7 @@ namespace XQuant {
 		}
 		ImGui::PopStyleColor();
 		ImGui::EndChild();
+		
 		ImGui::End();		
 	}
 

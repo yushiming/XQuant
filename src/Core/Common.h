@@ -32,8 +32,25 @@ namespace XQuant {
 		eForex            = 3,            // 外汇
 		eDigitalCash      = 4,            // 数字货币
 	};
+	       
+	enum ETrendTime : int {
+		eTTNull         = 0,
+		eTTTimeShare    = 1,
+		eTTDay          = 2,
+		eTTWeek         = 3,
+		eTTMonth        = 4,
+		eTTSeason       = 5,
+		eTTYear         = 6,
+		eTT1Minute      = 7,
+		eTT5Minute      = 8,
+		eTT15Minute     = 9,
+		eTT30Minute     = 10,
+		eTT60Minute     = 11,
+	};
 
 	extern std::map<EPlatform, std::string> PlatformName;
+
+	extern std::map<ETrendTime, std::string> TrendTimeName;
 
 	// contract 期货合约  IF2205
 	struct FuturesAccountInfo

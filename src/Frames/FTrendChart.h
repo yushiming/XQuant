@@ -36,6 +36,7 @@ namespace XQuant {
 		void onImGuiRender() override;
 
 	private:
-		bool _isShow = true;
+		void FTrendChart::drawCandlestickChart(const char* label_id, const double* xs, const double* opens, const double* closes, const double* lows, const double* highs, int count, bool tooltip, float width_percent, ImVec4 bullCol, ImVec4 bearCol);
+	private:
 	};
 }

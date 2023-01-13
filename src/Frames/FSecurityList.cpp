@@ -1,4 +1,5 @@
 #include "Frames/FSecurityList.h"
+#include "Core/Application.h"
 
 namespace XQuant {
 
@@ -8,7 +9,7 @@ namespace XQuant {
 	}
 
 	void FSecurityList::onAttach() {
-
+		_isShow = true;
 	}
 
 	void FSecurityList::onDetach() {
@@ -20,8 +21,21 @@ namespace XQuant {
 	}
 
 	void FSecurityList::onImGuiRender() {
-		// ImGui::SetNextWindowSize(ImVec2(500, 400));
+		if (!_isShow) {
+			// TOFIX 这地方可以改为事件
+			Application::instance().setDeleteImGuiFrame(this);
+			return;
+		}
+
+		if (_initWinPos) {
+			//ImGui::SetNextWindowPos({ float(Config::ScreenWidth - _winSize.x) / 2, float(Config::ScreenHeigth - _winSize.y) / 2 });
+			_initWinPos = false;
+		}
+
 		ImGui::Begin(_name.c_str(), &_isShow, ImGuiWindowFlags_None);
+
+		// ImGui::SetNextWindowSize(ImVec2(500, 400));
+		// ImGui::Begin(_name.c_str(), &_isShow, ImGuiWindowFlags_None);
 
 		ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_None;
 		if (ImGui::BeginTabBar("SecurityListTabBar", tab_bar_flags))

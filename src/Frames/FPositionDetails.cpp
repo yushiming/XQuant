@@ -8,7 +8,7 @@ namespace XQuant {
 	}
 
 	void FPositionDetails::onAttach() {
-
+		_isShow = true;
 	}
 
 	void FPositionDetails::onDetach() {
@@ -20,7 +20,7 @@ namespace XQuant {
 	}
 
 	void FPositionDetails::onImGuiRender() {
-		ImGui::SetNextWindowSize(ImVec2(500, 400));
+
 		ImGui::Begin(_name.c_str(), &_isShow, ImGuiWindowFlags_None);
 		if (ImGui::SmallButton("[Debug] FPositionDetails"))
 		{

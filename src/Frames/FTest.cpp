@@ -26,7 +26,7 @@ namespace XQuant {
 		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
 		if (show_demo_window)
 			ImGui::ShowDemoWindow(&show_demo_window);
-
+		/*
 		// 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
 		{
 			static float f = 0.0f;
@@ -62,9 +62,9 @@ namespace XQuant {
 				show_another_window = false;
 			ImGui::End();
 		}
-		
+		*/
 
-		//ImPlot::ShowDemoWindow();
+		ImPlot::ShowDemoWindow();
 
 	}
 }
