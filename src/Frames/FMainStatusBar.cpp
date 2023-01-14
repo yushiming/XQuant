@@ -10,7 +10,7 @@ namespace XQuant {
 	}
 
 	void FMainStatusBar::onAttach() {
-
+		_isShow = true;
 	}
 
 	void FMainStatusBar::onDetach() {

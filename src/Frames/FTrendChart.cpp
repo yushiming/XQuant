@@ -106,7 +106,7 @@ namespace XQuant {
 			//ImGui::SameLine(); ImGui::ColorEdit4("##Bear", &bearCol.x, ImGuiColorEditFlags_NoInputs);
 			ImPlot::GetStyle().UseLocalTime = false;
 
-			if (ImPlot::BeginPlot("Candlestick Chart", ImVec2(-1, -1))) {
+			if (ImPlot::BeginPlot(u8"×ßÊÆÍ¼", ImVec2(-1, -1))) {
 				ImPlot::SetupAxes(NULL, NULL, 0, ImPlotAxisFlags_AutoFit | ImPlotAxisFlags_RangeFit);
 				ImPlot::SetupAxesLimits(1546300800, 1571961600, 1250, 1600);
 				ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_Time);

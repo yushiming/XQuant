@@ -8,7 +8,7 @@ namespace XQuant {
 	}
 
 	void FHelp::onAttach() {
-
+		_isShow = true;
 	}
 
 	void FHelp::onDetach() {

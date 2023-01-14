@@ -39,7 +39,6 @@ namespace XQuant {
 	private:
 
 	private:
-		bool _isShow = true;
 		const float _toolbarSize = 50;
 		float _menuBarHeight = 0;
 

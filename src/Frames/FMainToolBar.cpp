@@ -10,7 +10,7 @@ namespace XQuant {
 	}
 
 	void FMainToolBar::onAttach() {
-
+		_isShow = true;
 	}
 
 	void FMainToolBar::onDetach() {

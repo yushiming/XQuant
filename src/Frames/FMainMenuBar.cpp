@@ -15,7 +15,7 @@ namespace XQuant {
 	}
 
 	void FMainMenuBar::onAttach() {
-
+		_isShow = true;
 	}
 
 	void FMainMenuBar::onDetach() {

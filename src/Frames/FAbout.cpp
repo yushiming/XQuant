@@ -8,7 +8,7 @@ namespace XQuant {
 	}
 
 	void FAbout::onAttach() {
-
+		_isShow = true;
 	}
 
 	void FAbout::onDetach() {

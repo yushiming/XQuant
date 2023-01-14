@@ -8,7 +8,7 @@ namespace XQuant {
 	}
 
 	void FStrategyBlueprintEdit::onAttach() {
-
+		_isShow = true;
 	}
 
 	void FStrategyBlueprintEdit::onDetach() {

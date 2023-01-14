@@ -8,7 +8,7 @@ namespace XQuant {
 	}
 
 	void FBacktestRun::onAttach() {
-
+		_isShow = true;
 	}
 
 	void FBacktestRun::onDetach() {
