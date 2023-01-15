@@ -15,6 +15,22 @@
 //
 //=====================================================================================
 
+#pragma once
+
+#include <string>
+#include <optional>
+
+#include <imgui.h>
+
+namespace XQuant {
+
+	class ImGuiHelper {
+	public:
+		static void helpMarker(const char* desc);
+
+	};
+}
+
 
 
 

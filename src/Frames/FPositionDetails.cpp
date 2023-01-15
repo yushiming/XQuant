@@ -120,34 +120,103 @@ namespace XQuant {
 		ImGui::BeginGroup();
 		ImGui::SetNextItemWidth(120);
 		static char buf1[64] = ""; ImGui::InputText(u8"代码", buf1, 64);
+		static int selected_tread1 = 0;
+		const char* names[] = { u8"自定义", u8"买一", u8"买二", u8"买三", u8"卖一", u8"卖二", u8"卖三" };
+		// Simple selection popup (if you want to show the current selection inside the Button itself,
+		// you may want to build a string using the "###" operator to preserve a constant ID with a variable label)
+		ImGui::SetNextItemWidth(60);
+		if (ImGui::Button(u8"交易价位"))
+			ImGui::OpenPopup("my_select_popup1");
+		ImGui::SameLine();
+		ImGui::SetNextItemWidth(60);
+		ImGui::TextUnformatted(names[selected_tread1]);
+		if (ImGui::BeginPopup("my_select_popup1"))
+		{
+			if (ImGui::Selectable(names[0]))
+				selected_tread1 = 0;
+			ImGui::Separator();
+			if (ImGui::Selectable(names[1]))
+				selected_tread1 = 1;
+			if (ImGui::Selectable(names[2]))
+				selected_tread1 = 2;
+			if (ImGui::Selectable(names[3]))
+				selected_tread1 = 3;
+			ImGui::Separator();
+			if (ImGui::Selectable(names[4]))
+				selected_tread1 = 4;
+			if (ImGui::Selectable(names[5]))
+				selected_tread1 = 5;
+			if (ImGui::Selectable(names[6]))
+				selected_tread1 = 6;
+
+			//for (int i = 0; i < IM_ARRAYSIZE(names); i++)
+			//	if (ImGui::Selectable(names[i]))
+			//		selected_tread1 = i;
+			ImGui::EndPopup();
+		}
+
+		static int selected_tread2 = 0;
+		const char* names2[] = { u8"股数", u8"金额" };
+		// Simple selection popup (if you want to show the current selection inside the Button itself,
+		// you may want to build a string using the "###" operator to preserve a constant ID with a variable label)
+		ImGui::SetNextItemWidth(60);
+		if (ImGui::Button(u8"交易类型"))
+			ImGui::OpenPopup("my_select_popup2");
+		ImGui::SameLine();
+		ImGui::SetNextItemWidth(60);
+		ImGui::TextUnformatted(names2[selected_tread2]);
+		if (ImGui::BeginPopup("my_select_popup2"))
+		{
+			if (ImGui::Selectable(names2[0]))
+				selected_tread2 = 0;
+			ImGui::Separator();
+			if (ImGui::Selectable(names2[1]))
+				selected_tread2 = 1;
+			//for (int i = 0; i < IM_ARRAYSIZE(names); i++)
+			//	if (ImGui::Selectable(names[i]))
+			//		selected_tread1 = i;
+			ImGui::EndPopup();
+		}
+		ImGui::EndGroup();
+
+		// 股数 金额
+		ImGui::SameLine();
+		ImGui::SetCursorPosX(520.0f);
+		ImGui::BeginGroup();
+		static float foo222 = 15.0f;
 		ImGui::SetNextItemWidth(120);
+		//char label[32];
+		//sprintf(label, "Item %d", foo222);
+		//ImGui::LabelText(u8"当前股价: ", "%f", foo222);
+		ImGui::Text(u8"当前价格: %f", foo222);
 		static float foo = 12.0f;
-		ImGui::InputFloat(u8"价格", &foo, 0.01f, 0);
 		ImGui::SetNextItemWidth(120);
+		ImGui::InputFloat(u8"价格", &foo, 0.01f, 0);
 		static int foo1 = 100;
-		ImGui::InputInt(u8"股数", &foo1, 100, 0);
+		ImGui::SetNextItemWidth(120);
+		ImGui::InputInt(selected_tread2 == 0 ? u8"股数" : u8"金额", &foo1, 100, 0);
 		ImGui::EndGroup();
 
 		// 操作
 		ImGui::SameLine();
-		ImGui::SetCursorPosX(550.0f);
+		ImGui::SetCursorPosX(700.0f);
 		ImGui::BeginGroup();
 		ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(255, 0, 0, 100));
-		if (ImGui::Button(u8"买入", ImVec2(80, 23)))
+		if (ImGui::Button(u8"买入", ImVec2(100, 23)))
 		{
 
 		}
 		ImGui::PopStyleColor();
 
 		ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 255, 0, 100));
-		if (ImGui::Button(u8"卖出", ImVec2(80, 23)))
+		if (ImGui::Button(u8"卖出", ImVec2(100, 23)))
 		{
 
 		}
 		ImGui::PopStyleColor();
 
 		ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 0, 255, 100));
-		if (ImGui::Button(u8"平仓", ImVec2(80, 23)))
+		if (ImGui::Button(u8"平仓", ImVec2(100, 23)))
 		{
 
 

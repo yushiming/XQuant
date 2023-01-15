@@ -1,9 +1,9 @@
 //  Copyright [2023] <xiaxianyue>
 //=====================================================================================
 //
-//      Filename:  FLogOutput.h
+//      Filename:  FTradeLog.h
 //
-//   Description:  日志输出界面
+//   Description:  交易日志输出界面
 //
 //       Version:  1.0
 //       Created:  2023年1月6日 17时29分48秒
@@ -24,11 +24,11 @@
 
 namespace XQuant {
 
-	class FLogOutput : public ImGuiFrame
+	class FTradeLog : public ImGuiFrame
 	{
 	public:
-		FLogOutput(std::string name);
-		~FLogOutput() = default;
+		FTradeLog(std::string name);
+		~FTradeLog() = default;
 
 		void onAttach() override;
 		void onDetach() override;

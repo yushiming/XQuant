@@ -1,15 +1,15 @@
-#include "Frames/FLogOutput.h"
+#include "Frames/FTradeLog.h"
 #include "Core/Application.h"
 #include "Utils/TimeHelper.h"
 
 namespace XQuant {
 
-	FLogOutput::FLogOutput(std::string name)
+	FTradeLog::FTradeLog(std::string name)
 		: ImGuiFrame(name)
 	{
 	}
 
-	void FLogOutput::onAttach() {
+	void FTradeLog::onAttach() {
 		_isShow = true;
 		_logItemColor = ImVec4(0.8f, 0.2f, 0.2f, 1.0f);
 
@@ -36,15 +36,15 @@ namespace XQuant {
 		_logItems.push_back(TimeHelper::getCurrentTimeStr() + " zhisun " + u8"止损上海机场100股, 价格35.5, 亏损1200元"); //
 	}
 
-	void FLogOutput::onDetach() {
+	void FTradeLog::onDetach() {
 
 	}
 
-	void FLogOutput::onEvent(Event& e) {
+	void FTradeLog::onEvent(Event& e) {
 
 	}
 
-	void FLogOutput::onImGuiRender() {
+	void FTradeLog::onImGuiRender() {
 		if (!_isShow) {
 			// TOFIX 这地方可以改为事件
 			//Application::instance().setDeleteImGuiFrame(this);
@@ -113,7 +113,7 @@ namespace XQuant {
 		ImGui::End();
 	}
 
-	void FLogOutput::clearLog() {
+	void FTradeLog::clearLog() {
 		_logItems.clear();
 	}
 }

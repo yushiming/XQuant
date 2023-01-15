@@ -1,12 +1,12 @@
 //  Copyright [2023] <xiaxianyue>
 //=====================================================================================
 //
-//      Filename:  FBacktestRun.h
+//      Filename:  FSecurityClasses.h
 //
-//   Description:  回测运行界面、包含策略选择及因子参数修改
+//   Description:  证券类别界面
 //
 //       Version:  1.0
-//       Created:  2023年1月6日 17时35分46秒
+//       Created:  2023年1月8日 14时19分08秒
 //      Revision:  none
 //      Compiler:  vs2019
 //
@@ -24,11 +24,11 @@
 
 namespace XQuant {
 
-	class FBacktestRun : public ImGuiFrame
+	class FSecurityClasses : public ImGuiFrame
 	{
 	public:
-		FBacktestRun(std::string name);
-		~FBacktestRun() = default;
+		FSecurityClasses(std::string name);
+		~FSecurityClasses() = default;
 
 		void onAttach() override;
 		void onDetach() override;

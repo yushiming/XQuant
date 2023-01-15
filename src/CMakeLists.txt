@@ -53,39 +53,41 @@ set(FRAMES_FILE
 
 	./src/Frames/FAccountLogin.h
 	./src/Frames/FAccountLogin.cpp
+	./src/Frames/FSecurityClasses.h
+	./src/Frames/FSecurityClasses.cpp
+	./src/Frames/FSetting.h
+	./src/Frames/FSetting.cpp
+	./src/Frames/FHelp.h
+	./src/Frames/FHelp.cpp
+	./src/Frames/FAbout.h
+	./src/Frames/FAbout.cpp
+	
 	./src/Frames/FSecurityList.h
 	./src/Frames/FSecurityList.cpp
 	./src/Frames/FTrendChart.h
 	./src/Frames/FTrendChart.cpp
-	./src/Frames/FBacktestRun.h
-	./src/Frames/FBacktestRun.cpp
 	./src/Frames/FStrategyBlueprintRun.h
 	./src/Frames/FStrategyBlueprintRun.cpp	
-	
-	./src/Frames/FBacktestRecord.h
-	./src/Frames/FBacktestRecord.cpp
 	./src/Frames/FPositionDetails.h
 	./src/Frames/FPositionDetails.cpp
-	
-	./src/Frames/FLogOutput.h
-	./src/Frames/FLogOutput.cpp
-
-	./src/Frames/FStrategyBlueprintEdit.h
-	./src/Frames/FStrategyBlueprintEdit.cpp
-
 	./src/Frames/FTradeRecord.h
 	./src/Frames/FTradeRecord.cpp
-
-	./src/Frames/FAbout.h
-	./src/Frames/FAbout.cpp
-	./src/Frames/FHelp.h
-	./src/Frames/FHelp.cpp
-	./src/Frames/FSetting.h
-	./src/Frames/FSetting.cpp
+	./src/Frames/FTradeLog.h
+	./src/Frames/FTradeLog.cpp
+	
+	./src/Frames/FStrategyBlueprintEdit.h
+	./src/Frames/FStrategyBlueprintEdit.cpp
+	./src/Frames/FStrategyClasses.h
+	./src/Frames/FStrategyClasses.cpp
+	./src/Frames/FBacktestLog.h
+	./src/Frames/FBacktestLog.cpp
+	./src/Frames/FBacktestRecord.h
+	./src/Frames/FBacktestRecord.cpp	
+	./src/Frames/FStrategyProperty.h
+	./src/Frames/FStrategyProperty.cpp	
 	
 	./src/Frames/FTest.h
 	./src/Frames/FTest.cpp
-		
 )
 
 set(IMGUIEXT_FILE 
