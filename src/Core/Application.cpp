@@ -5,6 +5,9 @@
 #include "Core/Input.h"
 #include "Core/Assert.h"
 
+//#include "Frames/FFTrade.h"
+//#include "Frames/FFBacktest.h"
+
 #include "Frames/FTest.h"
 #include "Frames/FMainMenuBar.h"
 //#include "Frames/FMainToolBar.h"
@@ -55,10 +58,19 @@ namespace XQuant {
 		_projectData->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 
 		// TODO 创建多个窗体实例(imgui frame) 并加入_frameStack
-		auto ftest = new FTest("FTest");
-		ftest->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
-		pushLayer(ftest);
+		//auto ftest = new FTest("FTest");
+		//ftest->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		//pushLayer(ftest);
 
+		//auto ffbacktest = new FFBacktest(u8"回测");
+		//ffbacktest->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		//pushLayer(ffbacktest);
+
+		//auto fftrade = new FFTrade(u8"交易");
+		//fftrade->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		//pushLayer(fftrade);
+	
+		// 
 		auto fmainmenubar = new FMainMenuBar(u8"菜单栏");
 		fmainmenubar->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
 		pushLayer(fmainmenubar);
@@ -72,29 +84,29 @@ namespace XQuant {
 		//pushLayer(fmainstatusbar);
 
 		// 交易
-		//auto fsecuritylist = new FSecurityList(u8"品种列表");
-		//fsecuritylist->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
-		//pushLayer(fsecuritylist);
-		//// 
-		//auto ftrendchart = new FTrendChart(u8"趋势图");
-		//ftrendchart->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
-		//pushLayer(ftrendchart);
-		//// 
-		//auto fpositiondetails = new FPositionDetails(u8"持仓明细");
-		//fpositiondetails->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
-		//pushLayer(fpositiondetails);
-		//// 日志输出
-		//auto ftradelog = new FTradeLog(u8"交易日志");
-		//ftradelog->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
-		//pushLayer(ftradelog);
-		//// 策略蓝图运行
-		//auto fstrategyblueprintrun = new FStrategyBlueprintRun(u8"策略蓝图运行");
-		//fstrategyblueprintrun->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
-		//pushLayer(fstrategyblueprintrun);
-		//// 交易记录 
-		//auto ftraderecord = new FTradeRecord(u8"交易记录");
-		//ftraderecord->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
-		//pushLayer(ftraderecord);
+		auto fsecuritylist = new FSecurityList(u8"品种列表");
+		fsecuritylist->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		pushLayer(fsecuritylist);
+		// 
+		auto ftrendchart = new FTrendChart(u8"趋势图");
+		ftrendchart->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		pushLayer(ftrendchart);
+		// 
+		auto fpositiondetails = new FPositionDetails(u8"持仓明细");
+		fpositiondetails->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		pushLayer(fpositiondetails);
+		// 日志输出
+		auto ftradelog = new FTradeLog(u8"交易日志");
+		ftradelog->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		pushLayer(ftradelog);
+		// 策略蓝图运行
+		auto fstrategyblueprintrun = new FStrategyBlueprintRun(u8"策略蓝图运行");
+		fstrategyblueprintrun->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		pushLayer(fstrategyblueprintrun);
+		// 交易记录 
+		auto ftraderecord = new FTradeRecord(u8"交易记录");
+		ftraderecord->setEventCallback(XQ_BIND_EVENT_FN(Application::onEvent));
+		pushLayer(ftraderecord);
 
 		// 策略
 		auto fstrategyclasses = new FStrategyClasses(u8"策略类型");

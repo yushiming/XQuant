@@ -44,6 +44,12 @@ set(EVENTS_FILE
 )
 
 set(FRAMES_FILE
+
+	./src/Frames/FFTrade.h
+	./src/Frames/FFTrade.cpp
+	./src/Frames/FFBacktest.h
+	./src/Frames/FFBacktest.cpp
+	
 	./src/Frames/FMainMenuBar.h
 	./src/Frames/FMainMenuBar.cpp
 	./src/Frames/FMainToolBar.h

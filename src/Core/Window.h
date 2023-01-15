@@ -62,6 +62,8 @@ namespace XQuant {
 		static Scope<Window> create(const WindowProps& props = WindowProps());
 	private:
 		void shutdown();
+		int setWindowIcon(GLFWwindow* window);
+
 	private:
 		GLFWwindow* _window;
 

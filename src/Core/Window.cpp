@@ -1,3 +1,6 @@
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+
 #include "Core/Log.h"
 #include "Core/Window.h"
 #include "Core/Assert.h"
@@ -5,6 +8,8 @@
 #include "Events/ApplicationEvent.h"
 #include "Events/MouseEvent.h"
 #include "Events/KeyEvent.h"
+
+#include "utils/FileHelper.h"
 
 namespace XQuant {
 
@@ -52,6 +57,9 @@ namespace XQuant {
 		glfwSetWindowUserPointer(_window, &_data); // -----
 		glfwMakeContextCurrent(_window);
 		setVSync(true);
+
+		setWindowIcon(_window);
+
 
 		// Set GLFW callbacks
 		glfwSetWindowSizeCallback(_window, [](GLFWwindow* window, int width, int height) {
@@ -146,6 +154,24 @@ namespace XQuant {
 		}
 	}
 
+	int Window::setWindowIcon(GLFWwindow* window)
+	{
+		GLFWimage icon;
+		icon.width = 32;
+		icon.height = 32;
+		int channels = 3;
+		icon.pixels = stbi_load(FileHelper::getFullPath("resources\\pic\\icon.png").c_str(), &icon.width, &icon.height, &channels, 0);
+		if (icon.pixels)
+		{
+			glfwSetWindowIcon(window, 1, &icon);
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
 	void Window::onUpdate() {
 		glfwSwapBuffers(_window);
 		glfwPollEvents();
@@ -163,5 +189,7 @@ namespace XQuant {
 	bool Window::isVSync() const {
 		return _data.vSync;
 	}
+
+	
 
 }

@@ -71,6 +71,7 @@ include_directories(
 	dependencies/ctp-6.6.9/include
 	dependencies/imgui
 	dependencies/glm
+	dependencies/stb
 	src
 )
 

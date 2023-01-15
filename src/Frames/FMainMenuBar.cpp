@@ -32,8 +32,6 @@ namespace XQuant {
 
 	void FMainMenuBar::onImGuiRender() {
 
-		ImGui::SetNextWindowSize({ 0, 30 });
-
 		if (ImGui::BeginMainMenuBar()) {
 			if (ImGui::Button(u8"账号"))
 			{
@@ -42,14 +40,21 @@ namespace XQuant {
 				auto faccountlogin = new FAccountLogin(u8"账号登录");
 				Application::instance().setAddVectorImGuiFrame(faccountlogin);
 			}
-			if (ImGui::Button(u8"交易模式"))
-			{
 
-			}
-			if (ImGui::Button(u8"策略模式"))
-			{
+			if (ImGui::BeginMenu(u8"视图")) {
+				if (ImGui::MenuItem(u8"账号登录")) {
+					// 登录记录 			
+					// TOFIX 这地方可以改为事件 添加新界面到窗口中
+					//auto faccountlogin = new FAccountLogin(u8"账号登录");
+					//Application::instance().setAddVectorImGuiFrame(faccountlogin);
+				}
+				if (ImGui::MenuItem(u8"退出")) {
 
+				}
+
+				ImGui::EndMenu();
 			}
+
 			if (ImGui::Button(u8"品种类"))
 			{
 				auto fsecurityclasses = new FSecurityClasses(u8"品种类");
